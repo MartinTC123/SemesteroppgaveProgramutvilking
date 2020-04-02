@@ -1,4 +1,6 @@
-package Datamaskin;
+package Datamaskin.Komponenter;
+
+import Datamaskin.Komponent;
 
 public class Prosessor extends Komponent {
 

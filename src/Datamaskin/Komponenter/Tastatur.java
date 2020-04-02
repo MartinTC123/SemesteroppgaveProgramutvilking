@@ -1,4 +1,6 @@
-package Datamaskin;
+package Datamaskin.Komponenter;
+
+import Datamaskin.Komponent;
 
 public class Tastatur extends Komponent {
     public Tastatur(String navn, int pris){

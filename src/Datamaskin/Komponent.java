@@ -1,14 +1,17 @@
 package Datamaskin;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class Komponent {
 
-    private String navn;
+    private SimpleStringProperty navn;
 
-    private int pris;
+    private SimpleIntegerProperty pris;
 
     public Komponent(String navn, int pris){
-        this.navn= navn;
-        this.pris= pris;
+        this.navn = new SimpleStringProperty(navn);
+        this.pris= new SimpleIntegerProperty (pris);
     }
 }
 
