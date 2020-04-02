@@ -14,4 +14,12 @@ public class Lagring extends Komponent {
         this.lagringsplass= new SimpleIntegerProperty(lagringsplass);
         this.Type = new SimpleStringProperty(Type);
     }
+
+    public int getLagringsplass() {
+        return lagringsplass.getValue();
+    }
+
+    public void setLagringsplass(int lagringsplass) {
+        this.lagringsplass.set(lagringsplass);
+    }
 }
