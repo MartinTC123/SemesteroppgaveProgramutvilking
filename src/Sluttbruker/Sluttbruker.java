@@ -2,10 +2,11 @@ package Sluttbruker;
 
 
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-import java.awt.event.ActionEvent;
+
 
 public class Sluttbruker {
 
@@ -24,7 +25,6 @@ public class Sluttbruker {
         public void seHandlekurv(ActionEvent event) {
 
         }
-
-    }
+}
 
 

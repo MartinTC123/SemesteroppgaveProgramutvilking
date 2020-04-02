@@ -14,7 +14,7 @@ public class Controller {
 
     @FXML
     void sluttScene(ActionEvent event) throws IOException {
-        Parent scene= FXMLLoader.load(getClass().getResource("Sluttbruker.fxml"));
+        Parent scene= FXMLLoader.load(getClass().getResource("../Sluttbruker/Sluttbruker.fxml"));
         Scene scene1= new Scene(scene);
         Stage vindu= (Stage) ((Node)event.getSource()).getScene().getWindow();
         vindu.setScene(scene1);
