@@ -13,5 +13,13 @@ public class Komponent {
         this.navn = new SimpleStringProperty(navn);
         this.pris= new SimpleIntegerProperty (pris);
     }
+
+    public String getNavn() {
+        return navn.getValue();
+    }
+
+    public void setNavn(String navn) {
+        this.navn.set(navn);
+    }
 }
 
