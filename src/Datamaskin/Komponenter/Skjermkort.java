@@ -12,4 +12,12 @@ public class Skjermkort extends Komponent {
         this.Teknologi= new SimpleStringProperty(Teknologi);
         this.Klokkehastighet = new SimpleIntegerProperty(Klokkehastighet);
     }
+
+    public String getTeknologi() {
+        return Teknologi.getValue();
+    }
+
+    public void setTeknologi(String teknologi) {
+        this.Teknologi.set(teknologi);
+    }
 }
