@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="462.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Superbruker.Superbruker">
+   <children>
+      <Label layoutX="283.0" layoutY="192.0" />
+      <Label layoutX="216.0" layoutY="14.0" prefHeight="21.0" prefWidth="200.0" text="Administrer komponenter">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TableView layoutX="54.0" layoutY="209.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Label layoutX="54.0" layoutY="52.0" prefHeight="17.0" prefWidth="109.0" text="Type komponent">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="223.0" layoutY="52.0" text="Navn">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="397.0" layoutY="52.0" text="Pris">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="innKomponent" layoutX="54.0" layoutY="85.0" prefHeight="25.0" prefWidth="109.0" promptText="Eks: Prosessor, Skjermkort" />
+      <TextField fx:id="innNavn" layoutX="223.0" layoutY="85.0" promptText="Skriv navn her" />
+      <TextField fx:id="innPris" layoutX="397.0" layoutY="85.0" prefHeight="25.0" prefWidth="88.0" promptText="Skriv pris her" />
+      <Button layoutX="501.0" layoutY="85.0" mnemonicParsing="false" onAction="#leggTilKomponent" text="Legg til" />
+      <Button layoutX="450.0" layoutY="409.0" mnemonicParsing="false" onAction="#lagreEndringer" text="Lagre endringer" />
+      <TextField layoutX="54.0" layoutY="167.0" promptText="Søki her" />
+      <Label layoutX="54.0" layoutY="134.0" prefHeight="17.0" prefWidth="124.0" text="Komponentliste">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
