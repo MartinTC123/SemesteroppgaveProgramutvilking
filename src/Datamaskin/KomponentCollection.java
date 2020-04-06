@@ -19,6 +19,10 @@ public class KomponentCollection {
         liste.add(o);
     }
 
+    public void fjernElement(Komponent o){
+        liste.remove(o);
+    }
+
     public void sorterTableView(TableView<Komponent> t, TextField t1){
         FilteredList<Komponent> filtrertListe = new FilteredList<>(liste, b -> true);
 
@@ -45,9 +49,5 @@ public class KomponentCollection {
         SortedList<Komponent> sortertListe= new SortedList<>(filtrertListe);
         sortertListe.comparatorProperty().bind(t.comparatorProperty());
         t.setItems(sortertListe);
-    }
-
-    public void kopierRad(TableView<Komponent> t, TableView<Komponent> t1){
-
     }
 }

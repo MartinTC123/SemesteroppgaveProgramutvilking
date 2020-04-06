@@ -66,5 +66,11 @@
                </TableColumn>
            </columns>
        </TableView>
+      <Button layoutX="423.0" layoutY="500.0" mnemonicParsing="false" onAction="#leggTilIData" text="Legg til i datamaskin" />
+      <Label layoutX="380.0" layoutY="466.0" text="Velg en rad og trykk på knappen under ">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -2,14 +2,19 @@ package Sluttbruker;
 
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.geometry.Insets;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.StackPane;
+import javafx.util.Callback;
 
+import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -89,5 +94,21 @@ public class Sluttbruker implements Initializable {
                 kColl2.leggTilElement(test6);
 
                 kColl2.sorterTableView(tabell2, txtFiltrer);
+                tabell2.setOnMouseClicked(event -> {
+                        Komponent valgtKomponent= tabell2.getSelectionModel().getSelectedItem();
+                        kColl.leggTilElement(valgtKomponent);
+                        kColl2.fjernElement(valgtKomponent);
+                });
+                tabell1.setOnMouseClicked(event -> {
+                        Komponent valgtKomponent= tabell1.getSelectionModel().getSelectedItem();
+                        kColl.fjernElement(valgtKomponent);
+                        kColl2.leggTilElement(valgtKomponent);
+                });
+        }
+
+        public void leggTilIData(ActionEvent event) {
+
         }
 }
+
+
