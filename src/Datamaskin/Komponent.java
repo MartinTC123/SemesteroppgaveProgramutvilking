@@ -1,5 +1,6 @@
 package Datamaskin;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Komponent {
@@ -8,11 +9,11 @@ public class Komponent {
 
     private SimpleStringProperty komponent;
 
-    private SimpleStringProperty pris;
+    private SimpleIntegerProperty pris;
 
-    public Komponent(String navn, String komponent, String pris){
+    public Komponent(String navn, String komponent, int pris){
         this.navn = new SimpleStringProperty(navn);
-        this.pris= new SimpleStringProperty(pris);
+        this.pris= new SimpleIntegerProperty(pris);
         this.komponent= new SimpleStringProperty(komponent);
     }
 
@@ -24,11 +25,11 @@ public class Komponent {
         this.navn.set(navn);
     }
 
-    public String getPris(){
+    public int getPris(){
         return pris.getValue();
     }
 
-    public void setPris(String pris){
+    public void setPris(int pris){
         this.pris.set(pris);
     }
 

@@ -39,9 +39,6 @@ public class KomponentCollection {
                 else if (komponent.getKomponent().contains(lCaseFilter)){
                     return true;
                 }
-                else if (komponent.getPris().contains(lCaseFilter)){
-                    return true;
-                }
                 return false;
             });
         }));
