@@ -2,6 +2,7 @@ package Sluttbruker;
 
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
+import Filbehandling.Writer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,8 @@ public class Sluttbruker implements Initializable {
 
         KomponentCollection kColl2= new KomponentCollection();
 
+        ArrayList<Komponent> dataListe= new ArrayList<>();
+
         Komponent test= new Komponent("Test1", "Skjermkort", 2100);
         Komponent test2= new Komponent("Test2", "Prosessor", 2300);
         Komponent test3= new Komponent("Test3", "Minne", 1500);
@@ -28,10 +32,10 @@ public class Sluttbruker implements Initializable {
         Komponent test6= new Komponent("Test6", "Skjerm", 2500);
 
         @FXML
-        private TextField innFornavn;
+        private TextField inputLagre;
 
         @FXML
-        private TextField innEtternavn;
+        private TextField inputÅpne;
 
         @FXML
         private TextField txtFiltrer;
@@ -64,14 +68,23 @@ public class Sluttbruker implements Initializable {
         private Label lblTotalpris;
 
         @FXML
-        void leggTilHandlekurv(ActionEvent event) {
+        private Label lblFilbehandling;
 
+        @FXML
+        public void åpneFraFil(ActionEvent event) {
         }
 
         @FXML
-        void seHandlekurv(ActionEvent event) {
-
+        public void lagreTilFil(ActionEvent event) {
+                Writer skrivTxt= new Writer();
+                try {
+                        skrivTxt.lagre(dataListe, inputLagre.getText());
+                        lblFilbehandling.setText("Fil ble lagret med følgende versjon: " + inputLagre.getText());
+                } catch (IOException e) {
+                        lblFilbehandling.setText("Noe gikk feil ved lagring til fil!");
+                }
         }
+
 
         @Override
         public void initialize(URL location, ResourceBundle resources) {
@@ -96,11 +109,13 @@ public class Sluttbruker implements Initializable {
                 tabell2.setOnMouseClicked(event -> {
                         Komponent valgtKomponent= tabell2.getSelectionModel().getSelectedItem();
                         kColl.leggTilElement(valgtKomponent);
+                        dataListe.add(valgtKomponent);
                         kColl2.fjernElement(valgtKomponent);
                 });
                 tabell1.setOnMouseClicked(event -> {
                         Komponent valgtKomponent= tabell1.getSelectionModel().getSelectedItem();
                         kColl.fjernElement(valgtKomponent);
+                        dataListe.remove(valgtKomponent);
                         kColl2.leggTilElement(valgtKomponent);
                 });
         }
