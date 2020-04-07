@@ -2,7 +2,6 @@ package Sluttbruker;
 
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
-import Filbehandling.FilLeser;
 import Filbehandling.txtWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,9 +35,6 @@ public class Sluttbruker implements Initializable {
 
         @FXML
         private TextField inputLagre;
-
-        @FXML
-        private TextField inputÅpne;
 
         @FXML
         private TextField txtFiltrer;
@@ -76,28 +72,6 @@ public class Sluttbruker implements Initializable {
         Path path= Paths.get("src/txtFiler/Datamaskin");
 
         @FXML
-        public void åpneFraFil(ActionEvent event) {
-                /*
-                try {
-                        List<Komponent> kListe= FilLeser.les(Paths.get(path + inputÅpne.getText() + ".txt"));
-                        for (Komponent k : kListe){
-                                for (Komponent k1 : dataListe){
-                                        if (!k.getNavn().equals(k1.getNavn()) &&
-                                            !k.getKomponent().equals(k1.getKomponent()) &&
-                                            k.getPris() != k1.getPris()){
-                                            dataListe.add(k);
-                                            kColl.leggTilElement(k);
-                                        }
-                                }
-                        }
-                } catch (IOException e) {
-                        lblFilbehandling.setText(e.getMessage());
-                }
-
-                 */
-        }
-
-        @FXML
         public void lagreTilFil(ActionEvent event) {
                 txtWriter skrivTxt= new txtWriter();
                 try {
@@ -106,6 +80,22 @@ public class Sluttbruker implements Initializable {
                 } catch (IOException e) {
                         lblFilbehandling.setText("Noe gikk feil ved lagring til fil!");
                 }
+        }
+
+        @FXML
+        public void eksempelData(ActionEvent event) {
+                kColl.leggTilElement(test);
+                kColl.leggTilElement(test2);
+                kColl.leggTilElement(test3);
+                kColl.leggTilElement(test4);
+                kColl.leggTilElement(test5);
+                kColl.leggTilElement(test6);
+                kColl.leggTilElement(test7);
+        }
+
+        @FXML
+        public void fjernData(ActionEvent event) {
+                tabell1.getItems().clear();
         }
 
 
