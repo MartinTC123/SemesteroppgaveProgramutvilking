@@ -61,7 +61,7 @@
                </TableColumn>
            </columns>
        </TableView>
-      <Label layoutX="443.0" layoutY="465.0" text="Velg en rad og &quot;Click&quot; for å legge til  " />
+      <Label layoutX="443.0" layoutY="465.0" text="Velg en rad og &quot;Trykk&quot; for å legge til  " />
       <Label layoutX="443.0" layoutY="489.0" text="komponentet i datamaskinen" />
       <Label fx:id="lblTotalpris" layoutX="195.0" layoutY="464.0" prefHeight="35.0" prefWidth="167.0" />
       <Button layoutX="45.0" layoutY="468.0" mnemonicParsing="false" onAction="#beregnTotPris" text="Beregn totalpris" />

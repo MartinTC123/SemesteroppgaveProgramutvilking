@@ -2,16 +2,18 @@ package Sluttbruker;
 
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
-import Filbehandling.Writer;
+import Filbehandling.FilLeser;
+import Filbehandling.txtWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
-
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -30,6 +32,7 @@ public class Sluttbruker implements Initializable {
         Komponent test4= new Komponent("Test4", "Tastatur", 1400);
         Komponent test5= new Komponent("Test5", "Mus", 1000);
         Komponent test6= new Komponent("Test6", "Skjerm", 2500);
+        Komponent test7= new Komponent("Test7", "Harddisk", 1600);
 
         @FXML
         private TextField inputLagre;
@@ -70,13 +73,33 @@ public class Sluttbruker implements Initializable {
         @FXML
         private Label lblFilbehandling;
 
+        Path path= Paths.get("src/txtFiler/Datamaskin");
+
         @FXML
         public void åpneFraFil(ActionEvent event) {
+                /*
+                try {
+                        List<Komponent> kListe= FilLeser.les(Paths.get(path + inputÅpne.getText() + ".txt"));
+                        for (Komponent k : kListe){
+                                for (Komponent k1 : dataListe){
+                                        if (!k.getNavn().equals(k1.getNavn()) &&
+                                            !k.getKomponent().equals(k1.getKomponent()) &&
+                                            k.getPris() != k1.getPris()){
+                                            dataListe.add(k);
+                                            kColl.leggTilElement(k);
+                                        }
+                                }
+                        }
+                } catch (IOException e) {
+                        lblFilbehandling.setText(e.getMessage());
+                }
+
+                 */
         }
 
         @FXML
         public void lagreTilFil(ActionEvent event) {
-                Writer skrivTxt= new Writer();
+                txtWriter skrivTxt= new txtWriter();
                 try {
                         skrivTxt.lagre(dataListe, inputLagre.getText());
                         lblFilbehandling.setText("Fil ble lagret med følgende versjon: " + inputLagre.getText());
@@ -104,6 +127,7 @@ public class Sluttbruker implements Initializable {
                 kColl2.leggTilElement(test4);
                 kColl2.leggTilElement(test5);
                 kColl2.leggTilElement(test6);
+                kColl2.leggTilElement(test7);
 
                 kColl2.sorterTableView(tabell2, txtFiltrer);
                 tabell2.setOnMouseClicked(event -> {
