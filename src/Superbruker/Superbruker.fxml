@@ -90,5 +90,10 @@
             <DropShadow blurType="ONE_PASS_BOX" />
          </effect>
       </Button>
+      <Button layoutX="168.0" layoutY="423.0" mnemonicParsing="false" onAction="#fjernKomponent" style="-fx-background-color: #3D4550;" text="Fjern komponent" textFill="WHITE">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" />
+         </effect>
+      </Button>
    </children>
 </AnchorPane>

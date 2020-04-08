@@ -81,6 +81,12 @@ public class Superbruker implements Initializable {
         vindu.show();
     }
 
+    @FXML
+    public void fjernKomponent(ActionEvent event){
+        Komponent valgtKomponent= (Komponent) tabell3.getSelectionModel().getSelectedItem();
+        kColl3.fjernElement(valgtKomponent);
+    }
+
     KomponentCollection kColl3= new KomponentCollection();
 
     ArrayList<Komponent> dataListe= new ArrayList<>();
