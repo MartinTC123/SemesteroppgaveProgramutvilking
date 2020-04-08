@@ -21,6 +21,8 @@ public class Superbruker implements Initializable {
 
     ArrayList<Komponent> dataListe= new ArrayList<>();
 
+    Komponent test= new Komponent("Test", "Minne", 1000);
+
     @FXML
     private TableView tabell3;
 
@@ -59,5 +61,27 @@ public class Superbruker implements Initializable {
         navnC3.setCellFactory(TextFieldTableCell.forTableColumn());
         komponentC3.setCellFactory(TextFieldTableCell.forTableColumn());
         prisC3.setCellFactory(TextFieldTableCell.<Komponent,Integer>forTableColumn(new IntegerStringConverter()));
+
+        kColl3.leggTilElement(test);
+
+        tabell3.setEditable(true);
+    }
+
+    @FXML
+    public void txtNavnEdited(TableColumn.CellEditEvent<Komponent, String> event){
+        event.getRowValue().setNavn(event.getNewValue());
+    }
+
+    @FXML
+    public void txtKomponentEdited(TableColumn.CellEditEvent<Komponent, String> event){
+        event.getRowValue().setKomponent(event.getNewValue());
+    }
+
+    @FXML
+    public void intPrisEdited(TableColumn.CellEditEvent<Komponent, Integer> event){
+        if (IntegerStringOmgjøring.omgjøring){
+            event.getRowValue().setPris(event.getNewValue());
+        }
+        tabell3.refresh();
     }
 }
