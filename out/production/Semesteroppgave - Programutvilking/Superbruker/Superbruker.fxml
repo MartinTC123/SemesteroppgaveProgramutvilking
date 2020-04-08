@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane prefHeight="462.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Superbruker.Superbruker">
    <children>
       <Label layoutX="283.0" layoutY="192.0" />
@@ -16,11 +17,24 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TableView layoutX="54.0" layoutY="209.0" prefHeight="200.0" prefWidth="200.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
+      <TableView fx:id="tabell3" layoutX="54.0" layoutY="209.0" prefHeight="200.0" prefWidth="350.0">
+         <columns>
+            <TableColumn fx:id="navnC3" prefWidth="100.0" text="Navn">
+               <cellValueFactory>
+                  <PropertyValueFactory property="navn" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="komponentC3" prefWidth="150.0" text="Komponent">
+               <cellValueFactory>
+                  <PropertyValueFactory property="komponent" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="prisC3" prefWidth="100.0" text="Pris">
+               <cellValueFactory>
+                  <PropertyValueFactory property="pris" />
+               </cellValueFactory>
+            </TableColumn>
+         </columns>
       </TableView>
       <Label layoutX="54.0" layoutY="52.0" prefHeight="17.0" prefWidth="109.0" text="Type komponent">
          <font>
