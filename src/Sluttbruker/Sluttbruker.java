@@ -2,7 +2,7 @@ package Sluttbruker;
 
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
-import Filbehandling.txtWriter;
+import Filbehandling.FilSkriverTxt;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -69,13 +69,13 @@ public class Sluttbruker implements Initializable {
         @FXML
         private Label lblFilbehandling;
 
-        Path path= Paths.get("src/txtFiler/Datamaskin");
 
         @FXML
         public void lagreTilFil(ActionEvent event) {
-                txtWriter skrivTxt= new txtWriter();
+                FilSkriverTxt skrivTxt= new FilSkriverTxt();
+                Path path = Paths.get("src/txtFiler/Datamaskin" + inputLagre.getText() + ".txt");
                 try {
-                        skrivTxt.lagre(dataListe, inputLagre.getText());
+                        skrivTxt.lagre(dataListe, path );
                         lblFilbehandling.setText("Fil ble lagret med følgende versjon: " + inputLagre.getText());
                 } catch (IOException e) {
                         lblFilbehandling.setText("Noe gikk feil ved lagring til fil!");
