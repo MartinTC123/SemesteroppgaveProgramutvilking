@@ -3,6 +3,9 @@ package Datamaskin;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 public class Komponent {
 
     private SimpleStringProperty navn;
@@ -39,6 +42,13 @@ public class Komponent {
 
     public void setKomponent(String komponent){
         this.komponent.set(komponent);
+    }
+
+    private void skrivObjekt(ObjectOutputStream s) throws IOException {
+        s.defaultWriteObject();
+        s.writeUTF(navn.getValue());
+        s.writeUTF(komponent.getValue());
+        s.writeUTF(String.valueOf(pris.getValue()));
     }
 }
 
