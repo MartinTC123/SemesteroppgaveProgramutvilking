@@ -5,9 +5,14 @@ import Datamaskin.KomponentCollection;
 import Filbehandling.FilSkriverTxt;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 import java.io.IOException;
 import java.net.URL;
@@ -96,6 +101,15 @@ public class Sluttbruker implements Initializable {
         @FXML
         public void fjernData(ActionEvent event) {
                 tabell1.getItems().clear();
+        }
+
+        @FXML
+        public void byttScene(ActionEvent event) throws IOException {
+                Parent scene= FXMLLoader.load(getClass().getResource("../Sample/sample.fxml"));
+                Scene scene1= new Scene(scene);
+                Stage vindu= (Stage) ((Node)event.getSource()).getScene().getWindow();
+                vindu.setScene(scene1);
+                vindu.show();
         }
 
 

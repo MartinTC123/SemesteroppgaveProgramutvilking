@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="664.0" prefWidth="730.0" style="-fx-background-color: #3D4569;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sluttbruker.Sluttbruker">
+<AnchorPane fx:id="byttScene" prefHeight="664.0" prefWidth="730.0" style="-fx-background-color: #3D4569;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sluttbruker.Sluttbruker">
    <children>
       <Label layoutX="170.0" layoutY="69.0" prefHeight="112.0" prefWidth="518.0" text="Opprett en datamaskin" textAlignment="CENTER" textFill="WHITE">
          <font>
@@ -79,6 +79,11 @@
          </effect>
       </Button>
       <Button layoutX="296.0" layoutY="469.0" mnemonicParsing="false" onAction="#fjernData" style="-fx-background-color: #3D4556 #3D4556 #3D4556 #3D4556;" text="Fjern alt" textFill="WHITE">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" />
+         </effect>
+      </Button>
+      <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#byttScene" style="-fx-background-color: #3D4550;" text="Gå tilbake" textFill="WHITE">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" />
          </effect>
