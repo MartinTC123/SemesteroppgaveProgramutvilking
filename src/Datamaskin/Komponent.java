@@ -4,9 +4,11 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class Komponent {
+public class Komponent implements Serializable {
 
     private SimpleStringProperty navn;
 
@@ -44,11 +46,22 @@ public class Komponent {
         this.komponent.set(komponent);
     }
 
-    private void skrivObjekt(ObjectOutputStream s) throws IOException {
+    private void writeObject (ObjectOutputStream s) throws IOException {
         s.defaultWriteObject();
         s.writeUTF(navn.getValue());
         s.writeUTF(komponent.getValue());
-        s.writeUTF(String.valueOf(pris.getValue()));
+        s.writeInt(pris.getValue());
+    }
+
+    private void readObject (ObjectInputStream s) throws IOException, ClassNotFoundException {
+        s.defaultReadObject();
+        String navn= s.readUTF();
+        String komponent = s.readUTF();
+        int pris = s.readInt();
+
+        this.navn= new SimpleStringProperty(navn);
+        this.komponent = new SimpleStringProperty(komponent);
+        this.pris = new SimpleIntegerProperty(pris);
     }
 }
 
