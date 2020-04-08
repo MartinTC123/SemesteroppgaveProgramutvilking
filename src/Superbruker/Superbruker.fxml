@@ -5,58 +5,59 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.cell.TextFieldTableCell?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.cell.TextFieldTableCell?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<AnchorPane prefHeight="462.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Superbruker.Superbruker">
+<AnchorPane prefHeight="462.0" prefWidth="600.0" style="-fx-background-color: #3D4569;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Superbruker.Superbruker">
    <children>
       <Label layoutX="283.0" layoutY="192.0" />
-      <Label layoutX="216.0" layoutY="14.0" prefHeight="21.0" prefWidth="200.0" text="Administrer komponenter">
+      <Label layoutX="175.0" layoutY="14.0" prefHeight="29.0" prefWidth="263.0" text="Administrer komponenter" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="Roboto Bold Condensed" size="24.0" />
          </font>
       </Label>
       <TableView fx:id="tabell3" layoutX="54.0" layoutY="209.0" prefHeight="200.0" prefWidth="350.0">
          <columns>
-            <TableColumn fx:id="navnC3" prefWidth="100.0" text="Navn" onEditCommit="#txtNavnEdited">
+            <TableColumn fx:id="navnC3" onEditCommit="#txtNavnEdited" prefWidth="100.0" text="Navn">
                <cellValueFactory>
                   <PropertyValueFactory property="navn" />
                </cellValueFactory>
                <cellFactory>
-                  <TextFieldTableCell fx:factory="forTableColumn"/>
+                  <TextFieldTableCell fx:factory="forTableColumn" />
                </cellFactory>
             </TableColumn>
-            <TableColumn fx:id="komponentC3" prefWidth="150.0" text="Komponent" onEditCommit="#txtKomponentEdited">
+            <TableColumn fx:id="komponentC3" onEditCommit="#txtKomponentEdited" prefWidth="150.0" text="Komponent">
                <cellValueFactory>
                   <PropertyValueFactory property="komponent" />
                </cellValueFactory>
                <cellFactory>
-                  <TextFieldTableCell fx:factory="forTableColumn"/>
+                  <TextFieldTableCell fx:factory="forTableColumn" />
                </cellFactory>
             </TableColumn>
-            <TableColumn fx:id="prisC3" prefWidth="100.0" text="Pris" onEditCommit="#intPrisEdited">
+            <TableColumn fx:id="prisC3" onEditCommit="#intPrisEdited" prefWidth="100.0" text="Pris">
                <cellValueFactory>
                   <PropertyValueFactory property="pris" />
                </cellValueFactory>
                <cellFactory>
-                  <TextFieldTableCell fx:factory="forTableColumn"/>
+                  <TextFieldTableCell fx:factory="forTableColumn" />
                </cellFactory>
             </TableColumn>
          </columns>
       </TableView>
-      <Label layoutX="54.0" layoutY="52.0" prefHeight="17.0" prefWidth="109.0" text="Type komponent">
+      <Label layoutX="54.0" layoutY="52.0" prefHeight="17.0" prefWidth="109.0" text="Type komponent" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="223.0" layoutY="52.0" text="Navn">
+      <Label layoutX="223.0" layoutY="52.0" text="Navn" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="397.0" layoutY="52.0" text="Pris">
+      <Label layoutX="397.0" layoutY="52.0" text="Pris" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -64,10 +65,16 @@
       <TextField fx:id="innKomponent" layoutX="54.0" layoutY="85.0" prefHeight="25.0" prefWidth="109.0" promptText="Eks: Prosessor, Skjermkort" />
       <TextField fx:id="innNavn" layoutX="223.0" layoutY="85.0" promptText="Skriv navn her" />
       <TextField fx:id="innPris" layoutX="397.0" layoutY="85.0" prefHeight="25.0" prefWidth="88.0" promptText="Skriv pris her" />
-      <Button layoutX="501.0" layoutY="85.0" mnemonicParsing="false" onAction="#leggTilKomponent" text="Legg til" />
-      <Button layoutX="450.0" layoutY="409.0" mnemonicParsing="false" onAction="#lagreEndringer" text="Lagre endringer" />
-      <TextField layoutX="54.0" layoutY="167.0" promptText="Søki her" />
-      <Label layoutX="54.0" layoutY="134.0" prefHeight="17.0" prefWidth="124.0" text="Komponentliste">
+      <Button layoutX="501.0" layoutY="85.0" mnemonicParsing="false" onAction="#leggTilKomponent" style="-fx-background-color: #3D4550;" text="Legg til" textFill="WHITE">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" />
+         </effect></Button>
+      <Button layoutX="450.0" layoutY="409.0" mnemonicParsing="false" onAction="#lagreEndringer" style="-fx-background-color: #3D4550;" text="Lagre endringer" textFill="WHITE">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" />
+         </effect></Button>
+      <TextField fx:id="txtFiltrer" layoutX="54.0" layoutY="167.0" promptText="Søk her" />
+      <Label layoutX="54.0" layoutY="134.0" prefHeight="17.0" prefWidth="124.0" text="Komponentliste" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>

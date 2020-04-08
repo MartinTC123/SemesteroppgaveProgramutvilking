@@ -21,7 +21,9 @@ public class Superbruker implements Initializable {
 
     ArrayList<Komponent> dataListe= new ArrayList<>();
 
-    Komponent test= new Komponent("Test", "Minne", 1000);
+    Komponent test= new Komponent("Test1", "Minne", 1000);
+    Komponent test1= new Komponent("Test2", "Skjermkort", 1600);
+    Komponent test2= new Komponent("Test3", "Harddisk", 2000);
 
     @FXML
     private TableView tabell3;
@@ -45,6 +47,9 @@ public class Superbruker implements Initializable {
     private TextField innPris;
 
     @FXML
+    private TextField txtFiltrer;
+
+    @FXML
     void lagreEndringer(ActionEvent event) {
 
     }
@@ -57,12 +62,15 @@ public class Superbruker implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         kColl3.kobleTilTableView(tabell3);
+        kColl3.sorterTableView(tabell3, txtFiltrer);
 
         navnC3.setCellFactory(TextFieldTableCell.forTableColumn());
         komponentC3.setCellFactory(TextFieldTableCell.forTableColumn());
         prisC3.setCellFactory(TextFieldTableCell.<Komponent,Integer>forTableColumn(new IntegerStringConverter()));
 
         kColl3.leggTilElement(test);
+        kColl3.leggTilElement(test1);
+        kColl3.leggTilElement(test2);
 
         tabell3.setEditable(true);
     }

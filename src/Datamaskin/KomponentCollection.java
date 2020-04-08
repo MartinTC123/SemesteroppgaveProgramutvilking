@@ -36,7 +36,7 @@ public class KomponentCollection {
                 if (komponent.getNavn().toLowerCase().contains(lCaseFilter)){
                     return true;
                 }
-                else if (komponent.getKomponent().contains(lCaseFilter)){
+                else if (komponent.getKomponent().toLowerCase().contains(lCaseFilter)){
                     return true;
                 }
                 else if (Integer.toString(komponent.getPris()).contains(newValue)){
