@@ -84,7 +84,7 @@
             <DropShadow blurType="ONE_PASS_BOX" />
          </effect>
       </ChoiceBox>
-      <Label fx:id="lblNyttKomponent" layoutX="223.0" layoutY="116.0" prefHeight="37.0" prefWidth="263.0" textFill="WHITE" />
+      <Label fx:id="lblNyttKomponent" layoutX="223.0" layoutY="116.0" prefHeight="37.0" prefWidth="368.0" textFill="WHITE" />
       <Button layoutX="12.0" layoutY="8.0" mnemonicParsing="false" onAction="#byttScene" style="-fx-background-color: #3D4550;" text="Gå tilbake " textFill="WHITE">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" />
