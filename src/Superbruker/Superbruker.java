@@ -63,7 +63,7 @@ public class Superbruker implements Initializable {
             nyttKomponent = opprettKomponent();
         }
         catch (NumberFormatException e){
-            lblNyttKomponent.setText("Du må velge type komponent, skrive inn et navn og en pris!");
+            lblNyttKomponent.setText("Du må velge type komponent, skrive inn et navn og en gyldig pris!");
         }
         if (nyttKomponent != null){
             kColl3.leggTilElement(nyttKomponent);
