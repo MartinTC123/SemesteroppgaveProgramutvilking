@@ -56,8 +56,6 @@ public class Superbruker implements Initializable {
 
     }
 
-    int hei;
-
     @FXML
     void leggTilKomponent(ActionEvent event) {
         Komponent nyttKomponent= null;
