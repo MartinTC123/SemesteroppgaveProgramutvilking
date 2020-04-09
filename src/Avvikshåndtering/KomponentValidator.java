@@ -1,7 +1,9 @@
 package Avvikshåndtering;
 
+import Exceptions.UgyldigKomponent;
 import Exceptions.UgyldigNavn;
 import Exceptions.UgyldigPris;
+import javafx.scene.control.ChoiceBox;
 
 public class KomponentValidator {
 
@@ -17,6 +19,13 @@ public class KomponentValidator {
             throw new UgyldigPris("Ugyldig pris! Prisen kan ikke være negativ");
         } else if(test > 15000){
             throw new UgyldigPris("Ugyldig pris! Maks grense for pris er 14999kr");
+        }
+    }
+
+    public static void gyldigKomponent(ChoiceBox test) throws UgyldigKomponent{
+        if (test.getSelectionModel().isEmpty()){
+            throw new UgyldigKomponent("Du må velge type komponent!") {
+            };
         }
     }
 }

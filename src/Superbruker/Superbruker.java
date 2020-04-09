@@ -3,6 +3,7 @@ package Superbruker;
 import Avvikshåndtering.Avvik;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
+import Exceptions.UgyldigKomponent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,7 +64,7 @@ public class Superbruker implements Initializable {
             nyttKomponent = opprettKomponent();
         }
         catch (NumberFormatException e){
-            lblNyttKomponent.setText("Du må velge type komponent, skrive inn et navn og en gyldig pris!");
+            lblNyttKomponent.setText("Velg type komponent, skriv inn navn og gyldig pris!");
         }
         if (nyttKomponent != null){
             kColl3.leggTilElement(nyttKomponent);
@@ -112,11 +113,12 @@ public class Superbruker implements Initializable {
         int pris= Integer.parseInt(innPris.getText());
 
         boolean testNavn= Avvik.navnHaandtering(innNavn.getText());
+        boolean testKomponent= Avvik.komponentHaandtering(choiceBox);
         boolean opprettKomponent;
 
         try {
             boolean testPris= Avvik.prisHaandtering(Integer.parseInt(innPris.getText()));
-            opprettKomponent= testNavn && testPris;
+            opprettKomponent= testNavn && testKomponent && testPris;
         }catch (NumberFormatException e){
             throw new NumberFormatException("Feil input tall/bokstav");
         }

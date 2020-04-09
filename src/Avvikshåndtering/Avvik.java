@@ -1,7 +1,9 @@
 package Avvikshåndtering;
 
+import Exceptions.UgyldigKomponent;
 import Exceptions.UgyldigNavn;
 import Exceptions.UgyldigPris;
+import javafx.scene.control.ChoiceBox;
 
 public class Avvik {
 
@@ -27,5 +29,16 @@ public class Avvik {
             sjekkPris= false;
         }
         return sjekkPris;
+    }
+
+    public static boolean komponentHaandtering(ChoiceBox kompTest){
+        boolean sjekkKomponent= true;
+        try {
+            KomponentValidator.gyldigKomponent(kompTest);
+        }catch (UgyldigKomponent e){
+            avviksMelding= e.getMessage();
+            sjekkKomponent= false;
+        }
+        return sjekkKomponent;
     }
 }
