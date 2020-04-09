@@ -1,4 +1,4 @@
-package Avvik;
+package Exceptions;
 
 public class UgyldigPris extends UgyldigInput {
     public UgyldigPris(String msg){

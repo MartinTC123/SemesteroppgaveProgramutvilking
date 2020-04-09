@@ -1,5 +1,6 @@
 package Superbruker;
 
+import Avvikshåndtering.Avvik;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
 import javafx.collections.FXCollections;
@@ -112,8 +113,26 @@ public class Superbruker implements Initializable {
         String komponent= choiceBox.getSelectionModel().getSelectedItem();
         int pris= Integer.parseInt(innPris.getText());
 
+        boolean testNavn= Avvik.navnHaandtering(innNavn.getText());
+        boolean opprettKomponent;
+
+        try {
+            boolean testPris= Avvik.prisHaandtering(Integer.parseInt(innPris.getText()));
+            opprettKomponent= testNavn && testPris;
+        }catch (NumberFormatException e){
+            throw new NumberFormatException("Feil input tall/bokstav");
+        }
+
         Komponent nyttKomponent= new Komponent(navn, komponent, pris);
 
+        if (!opprettKomponent){
+            lblNyttKomponent.setText(Avvik.avviksMelding);
+            nyttKomponent= null;
+        }
+        else {
+            dataListe.add(nyttKomponent);
+            lblNyttKomponent.setText("Komponentet ble registrert");
+        }
         return nyttKomponent;
     }
 
