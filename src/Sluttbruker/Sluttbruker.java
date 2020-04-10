@@ -96,6 +96,14 @@ public class Sluttbruker implements Initializable {
                 kColl.leggTilElement(test5);
                 kColl.leggTilElement(test6);
                 kColl.leggTilElement(test7);
+
+                dataListe.add(test);
+                dataListe.add(test2);
+                dataListe.add(test3);
+                dataListe.add(test4);
+                dataListe.add(test5);
+                dataListe.add(test6);
+                dataListe.add(test7);
         }
 
         @FXML

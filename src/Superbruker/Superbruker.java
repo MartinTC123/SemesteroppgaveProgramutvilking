@@ -3,7 +3,6 @@ package Superbruker;
 import Avvikshåndtering.Avvik;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
-import Exceptions.UgyldigKomponent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -102,7 +101,7 @@ public class Superbruker implements Initializable {
 
         navnC3.setCellFactory(TextFieldTableCell.forTableColumn());
         komponentC3.setCellFactory(TextFieldTableCell.forTableColumn());
-        prisC3.setCellFactory(TextFieldTableCell.<Komponent,Integer>forTableColumn(new IntegerStringConverter()));
+        prisC3.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
         tabell3.setEditable(true);
     }
