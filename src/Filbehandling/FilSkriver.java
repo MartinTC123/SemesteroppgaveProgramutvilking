@@ -7,5 +7,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 public interface FilSkriver {
-    void lagre (ArrayList<Komponent> liste, Path path) throws IOException;
+    static void lagre(ArrayList<Komponent> liste, Path path) throws IOException {
+
+    }
 }

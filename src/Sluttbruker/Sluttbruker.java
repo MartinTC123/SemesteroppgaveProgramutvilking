@@ -80,7 +80,7 @@ public class Sluttbruker implements Initializable {
                 FilSkriverTxt skrivTxt= new FilSkriverTxt();
                 Path path = Paths.get("src/txtFiler/Datamaskin" + inputLagre.getText() + ".txt");
                 try {
-                        skrivTxt.lagre(dataListe, path );
+                        FilSkriverTxt.lagre(dataListe, path );
                         lblFilbehandling.setText("Fil ble lagret med følgende versjon: " + inputLagre.getText());
                 } catch (IOException e) {
                         lblFilbehandling.setText("Noe gikk feil ved lagring til fil!");
