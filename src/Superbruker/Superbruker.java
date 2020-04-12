@@ -149,7 +149,7 @@ public class Superbruker implements Initializable {
     public void txtNavnEdited(TableColumn.CellEditEvent<Komponent, String> event){
         if (!nyVerdi.navnTVHaandtering(event.getNewValue())){
             advarsel.setTitle("Advarsel!");
-            advarsel.setHeaderText("Feil ved redigering av navn");
+            advarsel.setHeaderText("Feil ved redigering av navn! Du har tastet inn et ugyldig navn.");
             advarsel.showAndWait();
             tabell3.refresh();
         }else {
@@ -159,14 +159,25 @@ public class Superbruker implements Initializable {
 
     @FXML
     public void txtKomponentEdited(TableColumn.CellEditEvent<Komponent, String> event){
-        event.getRowValue().setKomponent(event.getNewValue());
+        if (!nyVerdi.komponentTVHaandtering(event.getNewValue())){
+            advarsel.setTitle("Advarsel!");
+            advarsel.setHeaderText("Feil ved redigering av type komponent! Du har tastet inn et ugyldig komponent.");
+            advarsel.showAndWait();
+            tabell3.refresh();
+        }else {
+            event.getRowValue().setKomponent(event.getNewValue());
+        }
     }
 
     @FXML
     public void intPrisEdited(TableColumn.CellEditEvent<Komponent, Integer> event){
-        if (IntegerStringOmgjøring.omgjøring){
+        if (!nyVerdi.prisTVHaandtering(event.getNewValue())){
+            advarsel.setTitle("Advarsel!");
+            advarsel.setHeaderText("Feil ved redigering av pris! Du har skrevet inn en ugyldig pris.");
+            advarsel.showAndWait();
+            tabell3.refresh();
+        }else {
             event.getRowValue().setPris(event.getNewValue());
         }
-        tabell3.refresh();
     }
 }
