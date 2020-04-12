@@ -41,4 +41,15 @@ public class Avvik {
         }
         return sjekkKomponent;
     }
+
+    public static boolean TableKomponentHaandtering(String nyVerdi){
+        boolean sjekkNyttKomponent= true;
+        try {
+            KomponentValidator.gyldigTableKomponent(nyVerdi);
+        }catch (UgyldigKomponent e){
+            avviksMelding= e.getMessage();
+            sjekkNyttKomponent= false;
+        }
+        return sjekkNyttKomponent;
+    }
 }
