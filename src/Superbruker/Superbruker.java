@@ -17,10 +17,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
-
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Superbruker implements Initializable {
@@ -89,7 +87,6 @@ public class Superbruker implements Initializable {
 
     KomponentCollection kColl3= new KomponentCollection();
 
-    ArrayList<Komponent> dataListe= new ArrayList<>();
 
     ObservableList<String> tilgjengeligeValg= FXCollections.observableArrayList("Prosessor", "Skjermkort", "Minne", "Harddisk", "Tastatur", "Mus", "Skjerm");
 
@@ -130,7 +127,6 @@ public class Superbruker implements Initializable {
             nyttKomponent= null;
         }
         else {
-            dataListe.add(nyttKomponent);
             lblNyttKomponent.setText("Komponentet ble registrert");
         }
         return nyttKomponent;
