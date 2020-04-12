@@ -1,6 +1,7 @@
 package Superbruker;
 
 import Avvikshåndtering.Avvik;
+import Avvikshåndtering.TableViewAvvik;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
 import Exceptions.UgyldigKomponent;
@@ -159,21 +160,42 @@ public class Superbruker implements Initializable {
         choiceBox.getSelectionModel().clearSelection();
     }
 
+    private TableViewAvvik nyVerdi= new TableViewAvvik();
+    Alert advarsel= new Alert(Alert.AlertType.WARNING);
+
     @FXML
     public void txtNavnEdited(TableColumn.CellEditEvent<Komponent, String> event){
-        event.getRowValue().setNavn(event.getNewValue());
+        if (!nyVerdi.navnTVHaandtering(event.getNewValue())){
+            advarsel.setTitle("Advarsel!");
+            advarsel.setHeaderText("Feil ved redigering av navn! Du har tastet inn et ugyldig navn.");
+            advarsel.showAndWait();
+            tabell3.refresh();
+        }else {
+            event.getRowValue().setNavn(event.getNewValue());
+        }
     }
 
     @FXML
     public void txtKomponentEdited(TableColumn.CellEditEvent<Komponent, String> event){
-        event.getRowValue().setKomponent(event.getNewValue());
+        if (!nyVerdi.komponentTVHaandtering(event.getNewValue())){
+            advarsel.setTitle("Advarsel!");
+            advarsel.setHeaderText("Feil ved redigering av type komponent! Du har tastet inn et ugyldig komponent.");
+            advarsel.showAndWait();
+            tabell3.refresh();
+        }else {
+            event.getRowValue().setKomponent(event.getNewValue());
+        }
     }
 
     @FXML
     public void intPrisEdited(TableColumn.CellEditEvent<Komponent, Integer> event){
-        if (IntegerStringOmgjøring.omgjøring){
+        if (!nyVerdi.prisTVHaandtering(event.getNewValue())){
+            advarsel.setTitle("Advarsel!");
+            advarsel.setHeaderText("Feil ved redigering av pris! Du har skrevet inn en ugyldig pris.");
+            advarsel.showAndWait();
+            tabell3.refresh();
+        }else {
             event.getRowValue().setPris(event.getNewValue());
         }
-        tabell3.refresh();
     }
 }
