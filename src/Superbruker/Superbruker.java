@@ -1,9 +1,11 @@
 package Superbruker;
 
 import Avvikshåndtering.Avvik;
-import Avvikshåndtering.TableViewAvvik;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
+import Exceptions.UgyldigKomponent;
+import Filbehandling.FilSkriver;
+import Filbehandling.FilSkriverJobj;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +22,8 @@ import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -52,9 +56,18 @@ public class Superbruker implements Initializable {
     @FXML
     private Label lblNyttKomponent;
 
+    ArrayList<Komponent> kListe = new ArrayList<>();
+
     @FXML
     void lagreEndringer(ActionEvent event) {
-
+        Path path = Paths.get("komponenter.jobj");
+        try {
+            FilSkriverJobj.lagre(kListe, path);
+            lblNyttKomponent.setText("Endringer er lagret!");
+        }
+        catch (IOException e){
+            lblNyttKomponent.setText("Kunne ikke lagre endringer");
+        }
     }
 
     @FXML
@@ -68,8 +81,12 @@ public class Superbruker implements Initializable {
         }
         if (nyttKomponent != null){
             kColl3.leggTilElement(nyttKomponent);
+            kListe.add(nyttKomponent);
             resetTextFields();
         }
+
+
+
     }
 
     @FXML
@@ -102,7 +119,7 @@ public class Superbruker implements Initializable {
 
         navnC3.setCellFactory(TextFieldTableCell.forTableColumn());
         komponentC3.setCellFactory(TextFieldTableCell.forTableColumn());
-        prisC3.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        prisC3.setCellFactory(TextFieldTableCell.<Komponent,Integer>forTableColumn(new IntegerStringConverter()));
 
         tabell3.setEditable(true);
     }
@@ -142,43 +159,21 @@ public class Superbruker implements Initializable {
         choiceBox.getSelectionModel().clearSelection();
     }
 
-    private TableViewAvvik nyVerdi= new TableViewAvvik();
-
-    Alert advarsel= new Alert(Alert.AlertType.WARNING);
-
     @FXML
     public void txtNavnEdited(TableColumn.CellEditEvent<Komponent, String> event){
-        if (!nyVerdi.navnTVHaandtering(event.getNewValue())){
-            advarsel.setTitle("Advarsel!");
-            advarsel.setHeaderText("Feil ved redigering av navn! Du har tastet inn et ugyldig navn.");
-            advarsel.showAndWait();
-            tabell3.refresh();
-        }else {
-            event.getRowValue().setNavn(event.getNewValue());
-        }
+        event.getRowValue().setNavn(event.getNewValue());
     }
 
     @FXML
     public void txtKomponentEdited(TableColumn.CellEditEvent<Komponent, String> event){
-        if (!nyVerdi.komponentTVHaandtering(event.getNewValue())){
-            advarsel.setTitle("Advarsel!");
-            advarsel.setHeaderText("Feil ved redigering av type komponent! Du har tastet inn et ugyldig komponent.");
-            advarsel.showAndWait();
-            tabell3.refresh();
-        }else {
-            event.getRowValue().setKomponent(event.getNewValue());
-        }
+        event.getRowValue().setKomponent(event.getNewValue());
     }
 
     @FXML
     public void intPrisEdited(TableColumn.CellEditEvent<Komponent, Integer> event){
-        if (!nyVerdi.prisTVHaandtering(event.getNewValue())){
-            advarsel.setTitle("Advarsel!");
-            advarsel.setHeaderText("Feil ved redigering av pris! Du har skrevet inn en ugyldig pris.");
-            advarsel.showAndWait();
-            tabell3.refresh();
-        }else {
+        if (IntegerStringOmgjøring.omgjøring){
             event.getRowValue().setPris(event.getNewValue());
         }
+        tabell3.refresh();
     }
 }
