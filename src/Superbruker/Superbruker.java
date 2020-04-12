@@ -102,8 +102,6 @@ public class Superbruker implements Initializable {
 
     KomponentCollection kColl3= new KomponentCollection();
 
-    ArrayList<Komponent> dataListe= new ArrayList<>();
-
     ObservableList<String> tilgjengeligeValg= FXCollections.observableArrayList("Prosessor", "Skjermkort", "Minne", "Harddisk", "Tastatur", "Mus", "Skjerm");
 
     @Override
@@ -143,7 +141,6 @@ public class Superbruker implements Initializable {
             nyttKomponent= null;
         }
         else {
-            dataListe.add(nyttKomponent);
             lblNyttKomponent.setText("Komponentet ble registrert");
         }
         return nyttKomponent;
