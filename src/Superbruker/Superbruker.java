@@ -4,8 +4,6 @@ import Avvikshåndtering.Avvik;
 import Avvikshåndtering.TableViewAvvik;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
-import Exceptions.UgyldigKomponent;
-import Filbehandling.FilSkriver;
 import Filbehandling.FilSkriverJobj;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -85,9 +83,6 @@ public class Superbruker implements Initializable {
             kListe.add(nyttKomponent);
             resetTextFields();
         }
-
-
-
     }
 
     @FXML
@@ -167,7 +162,7 @@ public class Superbruker implements Initializable {
     public void txtNavnEdited(TableColumn.CellEditEvent<Komponent, String> event){
         if (!nyVerdi.navnTVHaandtering(event.getNewValue())){
             advarsel.setTitle("Advarsel!");
-            advarsel.setHeaderText("Feil ved redigering av navn! Du har tastet inn et ugyldig navn.");
+            advarsel.setHeaderText(Avvik.avviksMelding);
             advarsel.showAndWait();
             tabell3.refresh();
         }else {
@@ -179,7 +174,7 @@ public class Superbruker implements Initializable {
     public void txtKomponentEdited(TableColumn.CellEditEvent<Komponent, String> event){
         if (!nyVerdi.komponentTVHaandtering(event.getNewValue())){
             advarsel.setTitle("Advarsel!");
-            advarsel.setHeaderText("Feil ved redigering av type komponent! Du har tastet inn et ugyldig komponent.");
+            advarsel.setHeaderText(Avvik.avviksMelding);
             advarsel.showAndWait();
             tabell3.refresh();
         }else {
@@ -191,7 +186,7 @@ public class Superbruker implements Initializable {
     public void intPrisEdited(TableColumn.CellEditEvent<Komponent, Integer> event){
         if (!nyVerdi.prisTVHaandtering(event.getNewValue())){
             advarsel.setTitle("Advarsel!");
-            advarsel.setHeaderText("Feil ved redigering av pris! Du har skrevet inn en ugyldig pris.");
+            advarsel.setHeaderText(Avvik.avviksMelding);
             advarsel.showAndWait();
             tabell3.refresh();
         }else {
