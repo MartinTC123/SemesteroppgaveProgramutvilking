@@ -1,6 +1,7 @@
 package Superbruker;
 
 import Avvikshåndtering.Avvik;
+import Avvikshåndtering.TableViewAvvik;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
 import javafx.collections.FXCollections;
@@ -141,9 +142,19 @@ public class Superbruker implements Initializable {
         choiceBox.getSelectionModel().clearSelection();
     }
 
+    private TableViewAvvik nyVerdi= new TableViewAvvik();
+    Alert advarsel= new Alert(Alert.AlertType.WARNING);
+
     @FXML
     public void txtNavnEdited(TableColumn.CellEditEvent<Komponent, String> event){
-        event.getRowValue().setNavn(event.getNewValue());
+        if (!nyVerdi.navnTVHaandtering(event.getNewValue())){
+            advarsel.setTitle("Advarsel!");
+            advarsel.setHeaderText("Feil ved redigering av navn");
+            advarsel.showAndWait();
+            tabell3.refresh();
+        }else {
+            event.getRowValue().setNavn(event.getNewValue());
+        }
     }
 
     @FXML

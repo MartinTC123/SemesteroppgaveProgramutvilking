@@ -28,4 +28,18 @@ public class KomponentValidator {
             };
         }
     }
+
+    public static void gyldigTableKomponent(String test) throws UgyldigKomponent{
+        boolean gyldig;
+        gyldig= test.matches("\bProsessor\b");
+        gyldig= test.matches("\bMinne\b");
+        gyldig= test.matches("\bSkjerm\b");
+        gyldig= test.matches("\bSkjermkort\b");
+        gyldig= test.matches("\bHarddisk\b");
+        gyldig= test.matches("\bMus\b");
+        gyldig= test.matches("\bTastatur\b");
+        if (!gyldig){
+            throw new UgyldigKomponent("Ugyldig redigering av komponent!");
+        }
+    }
 }
