@@ -2,8 +2,6 @@ package Avvikshåndtering;
 
 public class TableViewAvvik {
 
-    int test;
-
     public boolean navnTVHaandtering(String nyVerdi){
         if (nyVerdi.equals("")){
             return false;

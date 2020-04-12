@@ -9,8 +9,6 @@ public class Avvik {
 
     public static String avviksMelding;
 
-    int test;
-
     public static boolean navnHaandtering(String navnTest){
         boolean sjekkNavn= true;
         try {
