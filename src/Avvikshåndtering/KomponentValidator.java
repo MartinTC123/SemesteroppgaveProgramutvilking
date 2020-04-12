@@ -7,6 +7,8 @@ import javafx.scene.control.ChoiceBox;
 
 public class KomponentValidator {
 
+    int test;
+
     public static void gyldigNavn(String test) throws UgyldigNavn{
         boolean gyldig= test.matches("^[a-zA-Z]+(([',. -][a-zA-Z,0-9])?[a-zA-Z, 0-9]*)*$"); // regex hentet fra https://www.regextester.com/
         if (!gyldig){
