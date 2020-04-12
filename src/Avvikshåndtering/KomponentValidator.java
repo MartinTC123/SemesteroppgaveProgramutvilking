@@ -40,7 +40,7 @@ public class KomponentValidator {
         boolean gyldig5= test.matches("^Mus$");
         boolean gyldig6= test.matches("^Tastatur$");
         if (!gyldig && !gyldig1 && !gyldig2 && !gyldig3 && !gyldig4 && !gyldig5 && !gyldig6){
-            throw new UgyldigKomponent("Ugyldig redigering av komponent!");
+            throw new UgyldigKomponent("Ugyldig redigering av komponent! Du må taste inn et type komponent som er gyldig");
         }
     }
 }

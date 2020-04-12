@@ -162,7 +162,8 @@ public class Superbruker implements Initializable {
     public void txtNavnEdited(TableColumn.CellEditEvent<Komponent, String> event){
         if (!nyVerdi.navnTVHaandtering(event.getNewValue())){
             advarsel.setTitle("Advarsel!");
-            advarsel.setHeaderText(Avvik.avviksMelding);
+            String msg= Avvik.avviksMelding;
+            advarsel.setHeaderText(msg);
             advarsel.showAndWait();
             tabell3.refresh();
         }else {
@@ -174,7 +175,8 @@ public class Superbruker implements Initializable {
     public void txtKomponentEdited(TableColumn.CellEditEvent<Komponent, String> event){
         if (!nyVerdi.komponentTVHaandtering(event.getNewValue())){
             advarsel.setTitle("Advarsel!");
-            advarsel.setHeaderText(Avvik.avviksMelding);
+            String msg= Avvik.avviksMelding;
+            advarsel.setHeaderText(msg);
             advarsel.showAndWait();
             tabell3.refresh();
         }else {
@@ -186,7 +188,8 @@ public class Superbruker implements Initializable {
     public void intPrisEdited(TableColumn.CellEditEvent<Komponent, Integer> event){
         if (!nyVerdi.prisTVHaandtering(event.getNewValue())){
             advarsel.setTitle("Advarsel!");
-            advarsel.setHeaderText(Avvik.avviksMelding);
+            String msg= Avvik.avviksMelding;
+            advarsel.setHeaderText(msg);
             advarsel.showAndWait();
             tabell3.refresh();
         }else {
