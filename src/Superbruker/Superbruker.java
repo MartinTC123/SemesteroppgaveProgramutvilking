@@ -143,6 +143,7 @@ public class Superbruker implements Initializable {
     }
 
     private TableViewAvvik nyVerdi= new TableViewAvvik();
+
     Alert advarsel= new Alert(Alert.AlertType.WARNING);
 
     @FXML
