@@ -4,6 +4,9 @@ import Avvikshåndtering.Avvik;
 import Avvikshåndtering.TableViewAvvik;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
+import Exceptions.UgyldigKomponent;
+import Filbehandling.FilSkriver;
+import Filbehandling.FilSkriverJobj;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,8 +20,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
+
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Superbruker implements Initializable {
@@ -50,9 +57,18 @@ public class Superbruker implements Initializable {
     @FXML
     private Label lblNyttKomponent;
 
+    ArrayList<Komponent> kListe = new ArrayList<>();
+
     @FXML
     void lagreEndringer(ActionEvent event) {
-
+        Path path = Paths.get("komponenter.jobj");
+        try {
+            FilSkriverJobj.lagre(kListe, path);
+            lblNyttKomponent.setText("Endringer er lagret!");
+        }
+        catch (IOException e){
+            lblNyttKomponent.setText("Kunne ikke lagre endringer");
+        }
     }
 
     @FXML
@@ -66,8 +82,12 @@ public class Superbruker implements Initializable {
         }
         if (nyttKomponent != null){
             kColl3.leggTilElement(nyttKomponent);
+            kListe.add(nyttKomponent);
             resetTextFields();
         }
+
+
+
     }
 
     @FXML
@@ -87,6 +107,7 @@ public class Superbruker implements Initializable {
 
     KomponentCollection kColl3= new KomponentCollection();
 
+    ArrayList<Komponent> dataListe= new ArrayList<>();
 
     ObservableList<String> tilgjengeligeValg= FXCollections.observableArrayList("Prosessor", "Skjermkort", "Minne", "Harddisk", "Tastatur", "Mus", "Skjerm");
 
@@ -99,7 +120,7 @@ public class Superbruker implements Initializable {
 
         navnC3.setCellFactory(TextFieldTableCell.forTableColumn());
         komponentC3.setCellFactory(TextFieldTableCell.forTableColumn());
-        prisC3.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        prisC3.setCellFactory(TextFieldTableCell.<Komponent,Integer>forTableColumn(new IntegerStringConverter()));
 
         tabell3.setEditable(true);
     }
@@ -127,6 +148,7 @@ public class Superbruker implements Initializable {
             nyttKomponent= null;
         }
         else {
+            dataListe.add(nyttKomponent);
             lblNyttKomponent.setText("Komponentet ble registrert");
         }
         return nyttKomponent;
