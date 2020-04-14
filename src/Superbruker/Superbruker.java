@@ -18,7 +18,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
-
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -156,44 +155,45 @@ public class Superbruker implements Initializable {
     }
 
     private TableViewAvvik nyVerdi= new TableViewAvvik();
+
     Alert advarsel= new Alert(Alert.AlertType.WARNING);
 
     @FXML
     public void txtNavnEdited(TableColumn.CellEditEvent<Komponent, String> event){
-        if (!nyVerdi.navnTVHaandtering(event.getNewValue())){
+        if (nyVerdi.navnTVHaandtering(event.getNewValue())){
+            event.getRowValue().setNavn(event.getNewValue());
+        }else {
             advarsel.setTitle("Advarsel!");
             String msg= Avvik.avviksMelding;
             advarsel.setHeaderText(msg);
             advarsel.showAndWait();
             tabell3.refresh();
-        }else {
-            event.getRowValue().setNavn(event.getNewValue());
         }
     }
 
     @FXML
     public void txtKomponentEdited(TableColumn.CellEditEvent<Komponent, String> event){
-        if (!nyVerdi.komponentTVHaandtering(event.getNewValue())){
+        if (nyVerdi.komponentTVHaandtering(event.getNewValue())){
+            event.getRowValue().setKomponent(event.getNewValue());
+        }else {
             advarsel.setTitle("Advarsel!");
             String msg= Avvik.avviksMelding;
             advarsel.setHeaderText(msg);
             advarsel.showAndWait();
             tabell3.refresh();
-        }else {
-            event.getRowValue().setKomponent(event.getNewValue());
         }
     }
 
     @FXML
     public void intPrisEdited(TableColumn.CellEditEvent<Komponent, Integer> event){
-        if (!nyVerdi.prisTVHaandtering(event.getNewValue())){
+        if (nyVerdi.prisTVHaandtering(event.getNewValue())){
+            event.getRowValue().setPris(event.getNewValue());
+        }else {
             advarsel.setTitle("Advarsel!");
             String msg= Avvik.avviksMelding;
             advarsel.setHeaderText(msg);
             advarsel.showAndWait();
             tabell3.refresh();
-        }else {
-            event.getRowValue().setPris(event.getNewValue());
         }
     }
 }
