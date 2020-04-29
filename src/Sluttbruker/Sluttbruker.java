@@ -2,6 +2,7 @@ package Sluttbruker;
 
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
+import Filbehandling.FilLeserJobj;
 import Filbehandling.FilSkriverTxt;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -151,10 +152,18 @@ public class Sluttbruker implements Initializable {
         public void beregnTotPris(ActionEvent event) {
                 TableColumn<Komponent, Integer> rad= prisC;
                 List<Integer> data= new ArrayList<>();
-                for (Komponent p : tabell1.getItems()){
+                for (Komponent p : tabell1.getItems()) {
                         data.add(rad.getCellObservableValue(p).getValue());
                         lblTotalpris.setText("Totalpris: " + String.valueOf(data.stream().mapToInt(i -> i).sum()) + "kr");
                 }
+                        try {
+                                KomponentCollection kListe = FilLeserJobj.les(Paths.get("komponenter.jobj"));
+
+                        } catch (Exception e) {
+                                lblTotalpris.setText("failet");
+                        }
+
+
         }
 }
 

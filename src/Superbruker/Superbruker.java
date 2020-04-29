@@ -4,6 +4,7 @@ import Avvikshåndtering.Avvik;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
 import Exceptions.UgyldigKomponent;
+import Filbehandling.FilLeserJobj;
 import Filbehandling.FilSkriver;
 import Filbehandling.FilSkriverJobj;
 import javafx.collections.FXCollections;
@@ -25,9 +26,15 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Superbruker implements Initializable {
+
+    Path path = Paths.get("komponenter.jobj");
+    KomponentCollection kColl3= new KomponentCollection();
+
+
 
     @FXML
     private TableView tabell3;
@@ -56,18 +63,19 @@ public class Superbruker implements Initializable {
     @FXML
     private Label lblNyttKomponent;
 
-    ArrayList<Komponent> kListe = new ArrayList<>();
+    List<Komponent> kListe = new ArrayList<>();
 
     @FXML
     void lagreEndringer(ActionEvent event) {
-        Path path = Paths.get("komponenter.jobj");
+
         try {
-            FilSkriverJobj.lagre(kListe, path);
+            FilSkriverJobj.lagre(kColl3.getListe(), path);
             lblNyttKomponent.setText("Endringer er lagret!");
         }
         catch (IOException e){
             lblNyttKomponent.setText("Kunne ikke lagre endringer");
         }
+
     }
 
     @FXML
@@ -104,7 +112,7 @@ public class Superbruker implements Initializable {
         kColl3.fjernElement(valgtKomponent);
     }
 
-    KomponentCollection kColl3= new KomponentCollection();
+
 
     ArrayList<Komponent> dataListe= new ArrayList<>();
 

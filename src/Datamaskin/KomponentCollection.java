@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 
 public class KomponentCollection {
 
-    private ObservableList<Komponent> liste= FXCollections.observableArrayList();
+    private transient ObservableList<Komponent> liste= FXCollections.observableArrayList();
 
     public void kobleTilTableView(TableView t){
         t.setItems(liste);
@@ -21,6 +21,10 @@ public class KomponentCollection {
 
     public void fjernElement(Komponent o){
         liste.remove(o);
+    }
+
+    public ObservableList<Komponent> getListe(){
+        return liste;
     }
 
     public void sorterTableView(TableView<Komponent> t, TextField t1){
@@ -49,5 +53,6 @@ public class KomponentCollection {
         SortedList<Komponent> sortertListe= new SortedList<>(filtrertListe);
         sortertListe.comparatorProperty().bind(t.comparatorProperty());
         t.setItems(sortertListe);
+
     }
 }

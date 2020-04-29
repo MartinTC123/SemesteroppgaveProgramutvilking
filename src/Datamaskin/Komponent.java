@@ -10,11 +10,11 @@ import java.io.Serializable;
 
 public class Komponent implements Serializable {
 
-    private SimpleStringProperty navn;
+    private transient SimpleStringProperty navn;
 
-    private SimpleStringProperty komponent;
+    private transient SimpleStringProperty komponent;
 
-    private SimpleIntegerProperty pris;
+    private transient SimpleIntegerProperty pris;
 
     public Komponent(String navn, String komponent, int pris){
         this.navn = new SimpleStringProperty(navn);
@@ -62,6 +62,7 @@ public class Komponent implements Serializable {
         this.navn= new SimpleStringProperty(navn);
         this.komponent = new SimpleStringProperty(komponent);
         this.pris = new SimpleIntegerProperty(pris);
+
     }
 }
 
