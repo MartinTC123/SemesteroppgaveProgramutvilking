@@ -19,7 +19,7 @@
       <TextField fx:id="inputLagre" layoutX="45.0" layoutY="576.0" promptText="Skriv inn hvilken versjon " />
       <Label layoutX="27.0" layoutY="225.0" text="Dine komponenter i datamaskinen" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="14.0" />
+            <Font name="Roboto Bold Condensed" size="14.0" />
          </font>
       </Label>
       <TextField fx:id="txtFiltrer" layoutX="389.0" layoutY="216.0" promptText="Søk her" />
@@ -61,9 +61,18 @@
                </TableColumn>
            </columns>
        </TableView>
-      <Label layoutX="443.0" layoutY="465.0" text="Velg en rad og &quot;Trykk&quot; for å legge til  " textFill="WHITE" />
-      <Label layoutX="443.0" layoutY="489.0" text="komponentet i datamaskinen" textFill="WHITE" />
-      <Label fx:id="lblTotalpris" layoutX="212.0" layoutY="510.0" prefHeight="35.0" prefWidth="167.0" textFill="WHITE" />
+      <Label layoutX="443.0" layoutY="465.0" text="Velg en rad og &quot;Trykk&quot; for å legge til  " textFill="WHITE">
+         <font>
+            <Font name="Roboto Bold Condensed" size="13.0" />
+         </font></Label>
+      <Label layoutX="443.0" layoutY="489.0" text="komponentet i datamaskinen" textFill="WHITE">
+         <font>
+            <Font name="Roboto Bold Condensed" size="13.0" />
+         </font></Label>
+      <Label fx:id="lblTotalpris" layoutX="212.0" layoutY="510.0" prefHeight="35.0" prefWidth="167.0" textFill="WHITE">
+         <font>
+            <Font name="Roboto Bold Condensed" size="13.0" />
+         </font></Label>
       <Button layoutX="27.0" layoutY="514.0" mnemonicParsing="false" onAction="#beregnTotPris" style="-fx-background-color: #3D4556;" text="Beregn totalpris" textFill="WHITE">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" height="20.0" radius="9.5" width="20.0" />
@@ -72,7 +81,10 @@
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" />
          </effect></Button>
-      <Label fx:id="lblFilbehandling" layoutX="404.0" layoutY="549.0" prefHeight="82.0" prefWidth="310.0" textFill="WHITE" />
+      <Label fx:id="lblFilbehandling" layoutX="404.0" layoutY="549.0" prefHeight="82.0" prefWidth="310.0" textFill="WHITE">
+         <font>
+            <Font name="Roboto Bold Condensed" size="13.0" />
+         </font></Label>
       <Button layoutX="27.0" layoutY="469.0" mnemonicParsing="false" onAction="#eksempelData" style="-fx-background-color: #3D4556 #3D4556;" text="Eksempel på datamaskin" textFill="WHITE">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" />
