@@ -23,7 +23,7 @@ public class Controller {
 
     @FXML
     void superScene(ActionEvent event) throws IOException {
-        Parent scene= FXMLLoader.load(getClass().getResource("../Superbruker/Superbruker.fxml"));
+        Parent scene= FXMLLoader.load(getClass().getResource("../SuperbrukerInnlogging/Mellomscene.fxml"));
         Scene scene1= new Scene(scene);
         Stage vindu= (Stage) ((Node)event.getSource()).getScene().getWindow();
         vindu.setScene(scene1);
