@@ -56,8 +56,6 @@ public class Superbruker implements Initializable {
 
     ArrayList<Komponent> kListe = new ArrayList<>();
 
-    int test;
-
     @FXML
     void lagreEndringer(ActionEvent event) {
         Path path = Paths.get("komponenter.jobj");
