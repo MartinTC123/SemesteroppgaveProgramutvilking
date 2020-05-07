@@ -39,5 +39,14 @@ public class Mellomscene {
             lblUt.setText("Feil brukernavn eller passord!");
         }
     }
+
+    @FXML
+    void gåTilbake(ActionEvent event) throws IOException{
+        Parent scene= FXMLLoader.load(getClass().getResource("../Sample/sample.fxml"));
+        Scene scene1= new Scene(scene);
+        Stage vindu= (Stage) ((Node)event.getSource()).getScene().getWindow();
+        vindu.setScene(scene1);
+        vindu.show();
+    }
 }
 
