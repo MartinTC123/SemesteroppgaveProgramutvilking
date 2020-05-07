@@ -2,6 +2,7 @@ package Sluttbruker;
 
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
+import Filbehandling.FilLeser;
 import Filbehandling.FilLeserJobj;
 import Filbehandling.FilSkriverTxt;
 import javafx.event.ActionEvent;
@@ -31,13 +32,7 @@ public class Sluttbruker implements Initializable {
 
         ArrayList<Komponent> dataListe= new ArrayList<>();
 
-        Komponent test= new Komponent("Test1", "Skjermkort", 2100);
-        Komponent test2= new Komponent("Test2", "Prosessor", 2300);
-        Komponent test3= new Komponent("Test3", "Minne", 1500);
-        Komponent test4= new Komponent("Test4", "Tastatur", 1400);
-        Komponent test5= new Komponent("Test5", "Mus", 1000);
-        Komponent test6= new Komponent("Test6", "Skjerm", 2500);
-        Komponent test7= new Komponent("Test7", "Harddisk", 1600);
+        Path path = Paths.get("komponenter.jobj");
 
         @FXML
         private TextField inputLagre;
@@ -90,21 +85,7 @@ public class Sluttbruker implements Initializable {
 
         @FXML
         public void eksempelData(ActionEvent event) {
-                kColl.leggTilElement(test);
-                kColl.leggTilElement(test2);
-                kColl.leggTilElement(test3);
-                kColl.leggTilElement(test4);
-                kColl.leggTilElement(test5);
-                kColl.leggTilElement(test6);
-                kColl.leggTilElement(test7);
-
-                dataListe.add(test);
-                dataListe.add(test2);
-                dataListe.add(test3);
-                dataListe.add(test4);
-                dataListe.add(test5);
-                dataListe.add(test6);
-                dataListe.add(test7);
+               // fyll inn mot slutten
         }
 
         @FXML
@@ -134,13 +115,12 @@ public class Sluttbruker implements Initializable {
                 komponentC2.setCellFactory(TextFieldTableCell.forTableColumn());
                 prisC2.setCellFactory(TextFieldTableCell.<Komponent,Integer>forTableColumn(new IntegerStringConverter()));
 
-                kColl2.leggTilElement(test);
-                kColl2.leggTilElement(test2);
-                kColl2.leggTilElement(test3);
-                kColl2.leggTilElement(test4);
-                kColl2.leggTilElement(test5);
-                kColl2.leggTilElement(test6);
-                kColl2.leggTilElement(test7);
+                ArrayList<Komponent> kListe = FilLeserJobj.les(path);
+
+                for (Komponent k : kListe){
+                        kColl2.leggTilElement(k);
+                }
+
 
                 kColl2.sorterTableView(tabell2, txtFiltrer);
                 tabell2.setOnMouseClicked(event -> {
