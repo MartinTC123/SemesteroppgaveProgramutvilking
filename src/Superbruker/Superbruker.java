@@ -1,11 +1,14 @@
 package Superbruker;
 
 import Avvikshåndtering.Avvik;
+import Avvikshåndtering.TableViewAvvik;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
+
 import Exceptions.UgyldigKomponent;
 import Filbehandling.FilLeserJobj;
 import Filbehandling.FilSkriver;
+
 import Filbehandling.FilSkriverJobj;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +23,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
-
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -92,9 +94,6 @@ public class Superbruker implements Initializable {
             kListe.add(nyttKomponent);
             resetTextFields();
         }
-
-
-
     }
 
     @FXML
@@ -113,8 +112,6 @@ public class Superbruker implements Initializable {
     }
 
 
-
-    ArrayList<Komponent> dataListe= new ArrayList<>();
 
     ObservableList<String> tilgjengeligeValg= FXCollections.observableArrayList("Prosessor", "Skjermkort", "Minne", "Harddisk", "Tastatur", "Mus", "Skjerm");
 
@@ -155,7 +152,6 @@ public class Superbruker implements Initializable {
             nyttKomponent= null;
         }
         else {
-            dataListe.add(nyttKomponent);
             lblNyttKomponent.setText("Komponentet ble registrert");
         }
         return nyttKomponent;
@@ -167,21 +163,46 @@ public class Superbruker implements Initializable {
         choiceBox.getSelectionModel().clearSelection();
     }
 
+    private TableViewAvvik nyVerdi= new TableViewAvvik();
+
+    Alert advarsel= new Alert(Alert.AlertType.WARNING);
+
     @FXML
     public void txtNavnEdited(TableColumn.CellEditEvent<Komponent, String> event){
-        event.getRowValue().setNavn(event.getNewValue());
+        if (nyVerdi.navnTVHaandtering(event.getNewValue())){
+            event.getRowValue().setNavn(event.getNewValue());
+        }else {
+            advarsel.setTitle("Advarsel!");
+            String msg= Avvik.avviksMelding;
+            advarsel.setHeaderText(msg);
+            advarsel.showAndWait();
+            tabell3.refresh();
+        }
     }
 
     @FXML
     public void txtKomponentEdited(TableColumn.CellEditEvent<Komponent, String> event){
-        event.getRowValue().setKomponent(event.getNewValue());
+        if (nyVerdi.komponentTVHaandtering(event.getNewValue())){
+            event.getRowValue().setKomponent(event.getNewValue());
+        }else {
+            advarsel.setTitle("Advarsel!");
+            String msg= Avvik.avviksMelding;
+            advarsel.setHeaderText(msg);
+            advarsel.showAndWait();
+            tabell3.refresh();
+        }
     }
 
     @FXML
     public void intPrisEdited(TableColumn.CellEditEvent<Komponent, Integer> event){
-        if (IntegerStringOmgjøring.omgjøring){
+        if (nyVerdi.prisTVHaandtering(event.getNewValue())){
             event.getRowValue().setPris(event.getNewValue());
+        }else {
+            advarsel.setTitle("Advarsel!");
+            String msg= Avvik.avviksMelding;
+            advarsel.setHeaderText(msg);
+            advarsel.showAndWait();
+            tabell3.refresh();
         }
-        tabell3.refresh();
     }
 }

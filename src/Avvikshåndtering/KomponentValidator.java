@@ -15,8 +15,8 @@ public class KomponentValidator {
     }
 
     public static void gyldigPris(int test) throws UgyldigPris{
-        if (test < 0){
-            throw new UgyldigPris("Ugyldig pris! Prisen kan ikke være negativ");
+        if (test < 1){
+            throw new UgyldigPris("Ugyldig pris! Prisen kan ikke være 0 eller negativ");
         } else if(test > 15000){
             throw new UgyldigPris("Ugyldig pris! Maks grense for pris er 14999kr");
         }
@@ -30,16 +30,15 @@ public class KomponentValidator {
     }
 
     public static void gyldigTableKomponent(String test) throws UgyldigKomponent{
-        boolean gyldig;
-        gyldig= test.matches("\bProsessor\b");
-        gyldig= test.matches("\bMinne\b");
-        gyldig= test.matches("\bSkjerm\b");
-        gyldig= test.matches("\bSkjermkort\b");
-        gyldig= test.matches("\bHarddisk\b");
-        gyldig= test.matches("\bMus\b");
-        gyldig= test.matches("\bTastatur\b");
-        if (!gyldig){
-            throw new UgyldigKomponent("Ugyldig redigering av komponent!");
+        boolean gyldig= test.matches("^Prosessor$");
+        boolean gyldig1= test.matches("^Minne$");
+        boolean gyldig2= test.matches("^Skjerm$");
+        boolean gyldig3= test.matches("^Skjermkort$");
+        boolean gyldig4= test.matches("^Harddisk$");
+        boolean gyldig5= test.matches("^Mus$");
+        boolean gyldig6= test.matches("^Tastatur$");
+        if (!gyldig && !gyldig1 && !gyldig2 && !gyldig3 && !gyldig4 && !gyldig5 && !gyldig6){
+            throw new UgyldigKomponent("Ugyldig redigering av komponent! Du må taste inn et type komponent som er gyldig");
         }
     }
 }

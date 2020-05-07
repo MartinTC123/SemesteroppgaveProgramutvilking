@@ -50,17 +50,17 @@
       </TableView>
       <Label layoutX="54.0" layoutY="52.0" prefHeight="17.0" prefWidth="109.0" text="Type komponent" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="Roboto Bold Condensed" size="12.0" />
          </font>
       </Label>
       <Label layoutX="223.0" layoutY="52.0" text="Navn" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="Roboto Bold Condensed" size="12.0" />
          </font>
       </Label>
       <Label layoutX="397.0" layoutY="52.0" text="Pris" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="Roboto Bold Condensed" size="12.0" />
          </font>
       </Label>
       <TextField fx:id="innNavn" layoutX="223.0" layoutY="85.0" promptText="Skriv navn her" />
@@ -76,7 +76,7 @@
       <TextField fx:id="txtFiltrer" layoutX="54.0" layoutY="167.0" promptText="Søk her" />
       <Label layoutX="54.0" layoutY="134.0" prefHeight="17.0" prefWidth="124.0" text="Komponentliste" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="13.0" />
+            <Font name="Roboto Bold Condensed" size="13.0" />
          </font>
       </Label>
       <ChoiceBox fx:id="choiceBox" layoutX="41.0" layoutY="85.0" prefWidth="150.0">
@@ -84,7 +84,10 @@
             <DropShadow blurType="ONE_PASS_BOX" />
          </effect>
       </ChoiceBox>
-      <Label fx:id="lblNyttKomponent" layoutX="223.0" layoutY="116.0" prefHeight="37.0" prefWidth="369.0" textFill="WHITE" />
+      <Label fx:id="lblNyttKomponent" layoutX="223.0" layoutY="116.0" prefHeight="37.0" prefWidth="369.0" textFill="WHITE">
+         <font>
+            <Font name="Roboto Bold Condensed" size="13.0" />
+         </font></Label>
       <Button layoutX="12.0" layoutY="8.0" mnemonicParsing="false" onAction="#byttScene" style="-fx-background-color: #3D4550;" text="Gå tilbake " textFill="WHITE">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" />
