@@ -164,14 +164,6 @@ public class Sluttbruker implements Initializable {
                         data.add(rad.getCellObservableValue(p).getValue());
                         lblTotalpris.setText("Totalpris: " + String.valueOf(data.stream().mapToInt(i -> i).sum()) + "kr");
                 }
-                        try {
-                                KomponentCollection kListe = FilLeserJobj.les(Paths.get("komponenter.jobj"));
-
-                        } catch (Exception e) {
-                                lblTotalpris.setText("failet");
-                        }
-
-
         }
 }
 
