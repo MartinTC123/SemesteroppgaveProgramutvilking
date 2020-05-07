@@ -12,6 +12,7 @@ import Filbehandling.FilSkriver;
 import Filbehandling.FilSkriverJobj;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,7 +66,14 @@ public class Superbruker implements Initializable {
     @FXML
     private Label lblNyttKomponent;
 
-    List<Komponent> kListe = new ArrayList<>();
+    @FXML
+    private Button btnLeggTil;
+
+    @FXML
+    private Button btnLagre;
+
+    @FXML
+    private Button btnFjern;
 
     @FXML
     void lagreEndringer(ActionEvent event) {
@@ -91,7 +99,6 @@ public class Superbruker implements Initializable {
         }
         if (nyttKomponent != null){
             kColl3.leggTilElement(nyttKomponent);
-            kListe.add(nyttKomponent);
             resetTextFields();
         }
     }
@@ -114,6 +121,7 @@ public class Superbruker implements Initializable {
 
 
     ObservableList<String> tilgjengeligeValg= FXCollections.observableArrayList("Prosessor", "Skjermkort", "Minne", "Harddisk", "Tastatur", "Mus", "Skjerm");
+    private FilLeserJobj tråd;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -127,6 +135,54 @@ public class Superbruker implements Initializable {
         prisC3.setCellFactory(TextFieldTableCell.<Komponent,Integer>forTableColumn(new IntegerStringConverter()));
 
         tabell3.setEditable(true);
+
+        tråd = new FilLeserJobj(path);
+        tråd.setOnSucceeded(this::trådFerdig);
+        tråd.setOnFailed(this::trådFeilet);
+        Thread th = new Thread(tråd);
+        th.setDaemon(true);
+        tabell3.setDisable(true);
+        txtFiltrer.setDisable(true);
+        innNavn.setDisable(true);
+        innPris.setDisable(true);
+        choiceBox.setDisable(true);
+        btnFjern.setDisable(true);
+        btnLagre.setDisable(true);
+        btnLeggTil.setDisable(true);
+        lblNyttKomponent.setStyle("-fx-text-fill:#ff4d05");
+        lblNyttKomponent.setText("Laster inn... Vennligst vent...");
+        th.start();
+    }
+
+    private void trådFeilet(WorkerStateEvent event){
+        Throwable e = event.getSource().getException();
+        lblNyttKomponent.setText("Klarte ikke laste inn data, avviket sier " + e.getMessage());
+        tabell3.setDisable(false);
+        txtFiltrer.setDisable(false);
+        innNavn.setDisable(false);
+        innPris.setDisable(false);
+        choiceBox.setDisable(false);
+        btnFjern.setDisable(false);
+        btnLagre.setDisable(false);
+        btnLeggTil.setDisable(false);
+
+    }
+    private void trådFerdig(WorkerStateEvent e){
+        ArrayList<Komponent> kListe = tråd.getValue();
+        for (Komponent k : kListe){
+            kColl3.leggTilElement(k);
+        }
+        lblNyttKomponent.setStyle(null);
+        lblNyttKomponent.setText(null);
+        tabell3.setDisable(false);
+        txtFiltrer.setDisable(false);
+        innNavn.setDisable(false);
+        innPris.setDisable(false);
+        choiceBox.setDisable(false);
+        btnFjern.setDisable(false);
+        btnLagre.setDisable(false);
+        btnLeggTil.setDisable(false);
+
     }
 
     private Komponent opprettKomponent(){

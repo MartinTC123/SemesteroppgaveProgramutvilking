@@ -21,7 +21,6 @@ public class Controller {
         Stage vindu= (Stage) ((Node)event.getSource()).getScene().getWindow();
         vindu.setScene(scene1);
         vindu.show();
-        FilLeserJobj.les(Paths.get("komponenter.jobj"));
     }
 
     @FXML

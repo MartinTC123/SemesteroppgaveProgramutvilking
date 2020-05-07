@@ -6,6 +6,8 @@ import Exceptions.UgyldigTall;
 import Filbehandling.FilLeser;
 import Filbehandling.FilLeserJobj;
 import Filbehandling.FilSkriverTxt;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -71,25 +73,37 @@ public class Sluttbruker implements Initializable {
         @FXML
         private Label lblFilbehandling;
 
+        @FXML
+        private Button btnBeregn;
+
+        @FXML
+        private Button btnLagre;
+
+        @FXML
+        private Button btnEksempel;
+
+        @FXML
+        private Button btnFjern;
+
+
 
         @FXML
         public void lagreTilFil(ActionEvent event) {
-                int versjonsNummer =0;
-                try {
-                        versjonsNummer = Integer.parseInt(inputLagre.getText());
-                } catch (UgyldigTall e) {
-                        lblFilbehandling.setText("Skriv inn versjonsnummer som heltall");
-                }
-
-                Path path = Paths.get("src/txtFiler/Datamaskin" + versjonsNummer + ".txt");
-
 
                 try {
+                        int versjonsNummer = Integer.parseInt(inputLagre.getText());
+                        Path path = Paths.get("src/txtFiler/Datamaskin" + versjonsNummer + ".txt");
+
                         FilSkriverTxt.lagre(dataListe, path );
                         lblFilbehandling.setText("Fil ble lagret med følgende versjon: " + versjonsNummer);
+
                 } catch (IOException e) {
                         lblFilbehandling.setText("Noe gikk feil ved lagring til fil!");
                 }
+                catch (NumberFormatException e){
+                        lblFilbehandling.setText("Skriv inn versjonsnummer som heltall");
+                }
+
         }
 
         @FXML
@@ -120,6 +134,8 @@ public class Sluttbruker implements Initializable {
                 vindu.show();
         }
 
+        private FilLeserJobj tråd;
+
         @Override
         public void initialize(URL location, ResourceBundle resources) {
                 kColl.kobleTilTableView(tabell1);
@@ -132,11 +148,23 @@ public class Sluttbruker implements Initializable {
                 komponentC2.setCellFactory(TextFieldTableCell.forTableColumn());
                 prisC2.setCellFactory(TextFieldTableCell.<Komponent,Integer>forTableColumn(new IntegerStringConverter()));
 
-                ArrayList<Komponent> kListe = FilLeserJobj.les(path);
 
-                for (Komponent k : kListe){
-                        kColl2.leggTilElement(k);
-                }
+                tråd = new FilLeserJobj(path);
+                tråd.setOnSucceeded(this::trådFerdig);
+                tråd.setOnFailed(this::trådFeilet);
+                Thread th = new Thread(tråd);
+                th.setDaemon(true);
+                tabell1.setDisable(true);
+                tabell2.setDisable(true);
+                inputLagre.setDisable(true);
+                txtFiltrer.setDisable(true);
+                btnBeregn.setDisable(true);
+                btnEksempel.setDisable(true);
+                btnFjern.setDisable(true);
+                btnLagre.setDisable(true);
+                lblTotalpris.setStyle("-fx-text-fill:#ff4d05");
+                lblTotalpris.setText("Laster inn... Vennligst vent...");
+                th.start();
 
 
                 kColl2.sorterTableView(tabell2, txtFiltrer);
@@ -152,7 +180,50 @@ public class Sluttbruker implements Initializable {
                         dataListe.remove(valgtKomponent);
                         kColl2.leggTilElement(valgtKomponent);
                 });
+
+
         }
+
+
+        private void trådFeilet(WorkerStateEvent event){
+                Throwable e = event.getSource().getException();
+                lblTotalpris.setText("Klarte ikke laste inn data, avviket sier " + e.getMessage());
+                tabell1.setDisable(false);
+                tabell2.setDisable(false);
+                inputLagre.setDisable(false);
+                txtFiltrer.setDisable(false);
+                btnBeregn.setDisable(false);
+                btnEksempel.setDisable(false);
+                btnFjern.setDisable(false);
+                btnLagre.setDisable(false);
+
+
+        }
+        private void trådFerdig(WorkerStateEvent e){
+                ArrayList<Komponent> kListe = tråd.getValue();
+                for (Komponent k : kListe){
+                        kColl2.leggTilElement(k);
+                }
+                lblTotalpris.setStyle(null);
+                lblTotalpris.setText(null);
+                tabell1.setDisable(false);
+                tabell2.setDisable(false);
+                inputLagre.setDisable(false);
+                txtFiltrer.setDisable(false);
+                btnBeregn.setDisable(false);
+                btnEksempel.setDisable(false);
+                btnFjern.setDisable(false);
+                btnLagre.setDisable(false);
+        }
+
+
+
+
+
+
+
+
+
 
         public void beregnTotPris(ActionEvent event) {
                 TableColumn<Komponent, Integer> rad= prisC;
