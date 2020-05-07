@@ -1,0 +1,3 @@
+minne,Minne,145
+harddisk,Harddisk,23
+mus,Mus,347

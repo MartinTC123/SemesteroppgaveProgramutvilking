@@ -2,6 +2,7 @@ package Sluttbruker;
 
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
+import Exceptions.UgyldigTall;
 import Filbehandling.FilLeser;
 import Filbehandling.FilLeserJobj;
 import Filbehandling.FilSkriverTxt;
@@ -73,11 +74,19 @@ public class Sluttbruker implements Initializable {
 
         @FXML
         public void lagreTilFil(ActionEvent event) {
-                FilSkriverTxt skrivTxt= new FilSkriverTxt();
-                Path path = Paths.get("src/txtFiler/Datamaskin" + inputLagre.getText() + ".txt");
+                int versjonsNummer =0;
+                try {
+                        versjonsNummer = Integer.parseInt(inputLagre.getText());
+                } catch (UgyldigTall e) {
+                        lblFilbehandling.setText("Skriv inn versjonsnummer som heltall");
+                }
+
+                Path path = Paths.get("src/txtFiler/Datamaskin" + versjonsNummer + ".txt");
+
+
                 try {
                         FilSkriverTxt.lagre(dataListe, path );
-                        lblFilbehandling.setText("Fil ble lagret med følgende versjon: " + inputLagre.getText());
+                        lblFilbehandling.setText("Fil ble lagret med følgende versjon: " + versjonsNummer);
                 } catch (IOException e) {
                         lblFilbehandling.setText("Noe gikk feil ved lagring til fil!");
                 }
