@@ -34,5 +34,10 @@
          </font>
       </Label>
       <PasswordField fx:id="txtPassord" layoutX="209.0" layoutY="197.0" promptText="Skriv inn passord" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#gåTilbake" style="-fx-background-color: #3D4569 #3D4556 #3D4569 #3D4556;" text="Gå tilbake" textFill="WHITE">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" />
+         </effect>
+      </Button>
    </children>
 </AnchorPane>

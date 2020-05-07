@@ -111,6 +111,14 @@ public class Sluttbruker implements Initializable {
                 vindu.show();
         }
 
+        @FXML
+        public void opprettedeDatamaskiner(ActionEvent event) throws IOException {
+                Parent scene= FXMLLoader.load(getClass().getResource("../SceneForDatamaskiner/opprettedeDatamaskiner.fxml"));
+                Scene scene1= new Scene(scene);
+                Stage vindu= (Stage) ((Node)event.getSource()).getScene().getWindow();
+                vindu.setScene(scene1);
+                vindu.show();
+        }
 
         @Override
         public void initialize(URL location, ResourceBundle resources) {
