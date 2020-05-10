@@ -3,10 +3,11 @@ package Sluttbruker;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
 import Exceptions.FilEksisterer;
-import Exceptions.UgyldigKomponent;
+import Exceptions.UgyldigNavn;
 import Filbehandling.FilFraMappe;
 import Filbehandling.FilLeserJobj;
 import Filbehandling.FilSkriverTxt;
+import javafx.collections.ObservableList;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -95,6 +96,10 @@ public class Sluttbruker implements Initializable {
                         Path path2 = Paths.get("src/txtFiler/" + path1);
                         ArrayList<String> filer = FilFraMappe.Filer();
 
+                       if (inputLagre.getText().isEmpty()){
+                            throw new UgyldigNavn("Vennligst skriv inn et navn");
+                        }
+
                         for (String fil: filer) {
                                 if (String.valueOf(path1).equals(fil)){
                                         throw new FilEksisterer("Filnavnet eksisterer, prøv et annet navn");
@@ -107,7 +112,7 @@ public class Sluttbruker implements Initializable {
                 } catch (IOException e) {
                         lblFilbehandling.setText("En feil skjedde ved lagring til fil, prøv på nytt.");
                 }
-                catch (FilEksisterer e ){
+                catch (FilEksisterer | UgyldigNavn e ){
                         lblFilbehandling.setText(e.getMessage());
                 }
         }
@@ -119,6 +124,10 @@ public class Sluttbruker implements Initializable {
 
         @FXML
         public void fjernData(ActionEvent event) {
+                ObservableList<Komponent> kListe = tabell1.getItems();
+                for (Komponent k : kListe){
+                        kColl2.leggTilElement(k);
+                }
                 tabell1.getItems().clear();
         }
 
@@ -154,10 +163,9 @@ public class Sluttbruker implements Initializable {
                 komponentC2.setCellFactory(TextFieldTableCell.forTableColumn());
                 prisC2.setCellFactory(TextFieldTableCell.<Komponent,Integer>forTableColumn(new IntegerStringConverter()));
 
-
                 tråd = new FilLeserJobj(path);
-                tråd.setOnSucceeded(this::trådFerdig);
-                tråd.setOnFailed(this::trådFeilet);
+                tråd.setOnSucceeded(this::traadFerdig);
+                tråd.setOnFailed(this::traadFeilet);
                 Thread th = new Thread(tråd);
                 th.setDaemon(true);
                 tabell1.setDisable(true);
@@ -171,7 +179,6 @@ public class Sluttbruker implements Initializable {
                 lblTotalpris.setStyle("-fx-text-fill:#ff4d05");
                 lblTotalpris.setText("Laster inn... Vennligst vent...");
                 th.start();
-
 
                 kColl2.sorterTableView(tabell2, txtFiltrer);
                 tabell2.setOnMouseClicked(event -> {
@@ -188,7 +195,7 @@ public class Sluttbruker implements Initializable {
                 });
         }
 
-        private void trådFeilet(WorkerStateEvent event){
+        private void traadFeilet(WorkerStateEvent event){
                 Throwable e = event.getSource().getException();
                 lblTotalpris.setText("Klarte ikke laste inn data, avviket sier " + e.getMessage());
                 tabell1.setDisable(false);
@@ -199,9 +206,9 @@ public class Sluttbruker implements Initializable {
                 btnEksempel.setDisable(false);
                 btnFjern.setDisable(false);
                 btnLagre.setDisable(false);
-
         }
-        private void trådFerdig(WorkerStateEvent e){
+
+        private void traadFerdig(WorkerStateEvent e){
                 ArrayList<Komponent> kListe = tråd.getValue();
                 for (Komponent k : kListe){
                         kColl2.leggTilElement(k);

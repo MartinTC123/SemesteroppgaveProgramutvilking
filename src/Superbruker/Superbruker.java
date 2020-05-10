@@ -245,6 +245,7 @@ public class Superbruker implements Initializable {
     public void intPrisEdited(TableColumn.CellEditEvent<Komponent, Integer> event){
         if (nyVerdi.prisTVHaandtering(event.getNewValue())){
             event.getRowValue().setPris(event.getNewValue());
+
         }else {
             advarsel.setTitle("Advarsel!");
             String msg= Avvik.avviksMelding;
