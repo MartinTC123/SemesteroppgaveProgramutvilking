@@ -41,7 +41,6 @@ public class OpprettedeDatamaskiner implements Initializable {
         navnC.setCellFactory(TextFieldTableCell.forTableColumn());
         komponentC.setCellFactory(TextFieldTableCell.forTableColumn());
         prisC.setCellFactory(TextFieldTableCell.<Komponent,Integer>forTableColumn(new IntegerStringConverter()));
-
     }
 
     @FXML

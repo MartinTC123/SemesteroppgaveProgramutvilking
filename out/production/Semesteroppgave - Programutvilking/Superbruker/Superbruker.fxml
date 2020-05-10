@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="462.0" prefWidth="600.0" style="-fx-background-color: #3D4569;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Superbruker.Superbruker">
+<AnchorPane prefHeight="462.0" prefWidth="600.0" style="-fx-background-color: #3D4569;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Superbruker.Superbruker">
    <children>
       <Label layoutX="283.0" layoutY="192.0" />
       <Label layoutX="175.0" layoutY="14.0" prefHeight="29.0" prefWidth="263.0" text="Administrer komponenter" textFill="WHITE">
@@ -65,11 +65,11 @@
       </Label>
       <TextField fx:id="innNavn" layoutX="223.0" layoutY="85.0" promptText="Skriv navn her" />
       <TextField fx:id="innPris" layoutX="397.0" layoutY="85.0" prefHeight="25.0" prefWidth="88.0" promptText="Skriv pris her" />
-      <Button layoutX="501.0" layoutY="85.0" mnemonicParsing="false" onAction="#leggTilKomponent" style="-fx-background-color: #3D4550;" text="Legg til" textFill="WHITE">
+      <Button fx:id="btnLeggTil" layoutX="501.0" layoutY="85.0" mnemonicParsing="false" onAction="#leggTilKomponent" style="-fx-background-color: #3D4550;" text="Legg til" textFill="WHITE">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" />
          </effect></Button>
-      <Button layoutX="450.0" layoutY="409.0" mnemonicParsing="false" onAction="#lagreEndringer" style="-fx-background-color: #3D4550;" text="Lagre endringer" textFill="WHITE">
+      <Button fx:id="btnLagre" layoutX="450.0" layoutY="409.0" mnemonicParsing="false" onAction="#lagreEndringer" style="-fx-background-color: #3D4550;" text="Lagre endringer" textFill="WHITE">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" />
          </effect></Button>
@@ -93,7 +93,7 @@
             <DropShadow blurType="ONE_PASS_BOX" />
          </effect>
       </Button>
-      <Button layoutX="168.0" layoutY="423.0" mnemonicParsing="false" onAction="#fjernKomponent" style="-fx-background-color: #3D4550;" text="Fjern komponent" textFill="WHITE">
+      <Button fx:id="btnFjern" layoutX="168.0" layoutY="423.0" mnemonicParsing="false" onAction="#fjernKomponent" style="-fx-background-color: #3D4550;" text="Fjern komponent" textFill="WHITE">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" />
          </effect>

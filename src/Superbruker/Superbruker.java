@@ -5,9 +5,7 @@ import Avvikshåndtering.TableViewAvvik;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
 
-import Exceptions.UgyldigKomponent;
 import Filbehandling.FilLeserJobj;
-import Filbehandling.FilSkriver;
 
 import Filbehandling.FilSkriverJobj;
 import javafx.collections.FXCollections;
@@ -29,14 +27,12 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class Superbruker implements Initializable {
 
     Path path = Paths.get("komponenter.jobj");
     KomponentCollection kColl3= new KomponentCollection();
-
 
 
     @FXML
@@ -77,7 +73,6 @@ public class Superbruker implements Initializable {
 
     @FXML
     void lagreEndringer(ActionEvent event) {
-
         try {
             FilSkriverJobj.lagre(kColl3.getListe(), path);
             lblNyttKomponent.setText("Endringer er lagret!");
@@ -85,7 +80,6 @@ public class Superbruker implements Initializable {
         catch (IOException e){
             lblNyttKomponent.setText("Kunne ikke lagre endringer");
         }
-
     }
 
     @FXML
@@ -117,8 +111,6 @@ public class Superbruker implements Initializable {
         Komponent valgtKomponent= (Komponent) tabell3.getSelectionModel().getSelectedItem();
         kColl3.fjernElement(valgtKomponent);
     }
-
-
 
     ObservableList<String> tilgjengeligeValg= FXCollections.observableArrayList("Prosessor", "Skjermkort", "Minne", "Harddisk", "Tastatur", "Mus", "Skjerm");
     private FilLeserJobj tråd;

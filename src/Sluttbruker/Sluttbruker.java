@@ -2,12 +2,10 @@ package Sluttbruker;
 
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
-import Exceptions.UgyldigTall;
-import Filbehandling.FilLeser;
+import Filbehandling.FilFraMappe;
 import Filbehandling.FilLeserJobj;
 import Filbehandling.FilSkriverTxt;
 import javafx.concurrent.WorkerStateEvent;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
+
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -109,6 +108,9 @@ public class Sluttbruker implements Initializable {
         @FXML
         public void eksempelData(ActionEvent event) {
                // fyll inn mot slutten
+               ArrayList<String> filer = FilFraMappe.Filer();
+
+
         }
 
         @FXML
@@ -180,10 +182,7 @@ public class Sluttbruker implements Initializable {
                         dataListe.remove(valgtKomponent);
                         kColl2.leggTilElement(valgtKomponent);
                 });
-
-
         }
-
 
         private void trådFeilet(WorkerStateEvent event){
                 Throwable e = event.getSource().getException();
@@ -196,7 +195,6 @@ public class Sluttbruker implements Initializable {
                 btnEksempel.setDisable(false);
                 btnFjern.setDisable(false);
                 btnLagre.setDisable(false);
-
 
         }
         private void trådFerdig(WorkerStateEvent e){
@@ -215,15 +213,6 @@ public class Sluttbruker implements Initializable {
                 btnFjern.setDisable(false);
                 btnLagre.setDisable(false);
         }
-
-
-
-
-
-
-
-
-
 
         public void beregnTotPris(ActionEvent event) {
                 TableColumn<Komponent, Integer> rad= prisC;
