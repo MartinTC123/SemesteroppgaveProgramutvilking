@@ -2,13 +2,26 @@ package Filbehandling;
 
 import Datamaskin.Komponent;
 
-public class ParseKomponent {
-    public static Komponent ParseKomponent(String str){
-        Object[]array= str.split(FormaterDatamaskin.DELIMITER);
+import java.io.IOException;
 
-        String navn= (String) array[0];
-        String komponent= (String) array[1];
-        int pris= (int) array[2];
+public class ParseKomponent {
+    public static Komponent ParseKomponent(String str) throws IOException{
+        String [] array= str.split(FormaterDatamaskin.DELIMITER);
+
+        if(array.length!= 3){
+            throw new IOException("Kunne ikke lese fra fil!");
+        }
+
+        String navn= array[0];
+        String komponent= array[1];
+        int pris;
+
+        try{
+            pris = Integer.parseInt(array[2]);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(e.getMessage());
+        }
+
 
         return new Komponent(navn, komponent, pris);
     }
