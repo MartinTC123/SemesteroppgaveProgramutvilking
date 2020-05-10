@@ -2,8 +2,8 @@ package Filbehandling;
 
 import Datamaskin.Komponent;
 
-public class ParseData {
-    public static Komponent ParseData(String str){
+public class ParseKomponent {
+    public static Komponent ParseKomponent(String str){
         Object[]array= str.split(FormaterDatamaskin.DELIMITER);
 
         String navn= (String) array[0];
