@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -31,6 +33,12 @@ public class OpprettedeDatamaskiner implements Initializable {
 
     @FXML
     private TableColumn<Komponent, Integer> prisC;
+
+    @FXML
+    private ChoiceBox<String> choiceBox;
+
+    @FXML
+    private Label lblUt;
 
     KomponentCollection kColl = new KomponentCollection();
 
