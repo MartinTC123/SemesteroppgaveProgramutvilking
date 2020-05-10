@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -16,7 +17,7 @@
             <DropShadow blurType="ONE_PASS_BOX" />
          </effect>
       </Button>
-      <Label layoutX="180.0" layoutY="62.0" text="Opprettede datamaskiner" textFill="WHITE">
+      <Label layoutX="180.0" layoutY="41.0" text="Opprettede datamaskiner" textFill="WHITE">
          <font>
             <Font name="Roboto Bold Condensed" size="24.0" />
          </font>
@@ -40,5 +41,11 @@
             </TableColumn>
          </columns>
       </TableView>
+      <Label fx:id="lblUt" layoutX="125.0" layoutY="338.0" prefHeight="41.0" prefWidth="350.0" textFill="WHITE">
+         <font>
+            <Font name="Roboto Bold Condensed" size="13.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="choiceBox" layoutX="225.0" layoutY="81.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
