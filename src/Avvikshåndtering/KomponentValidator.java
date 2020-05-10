@@ -20,6 +20,7 @@ public class KomponentValidator {
         } else if(test > 15000){
             throw new UgyldigPris("Ugyldig pris! Maks grense for pris er 14999kr");
         }
+      
     }
 
     public static void gyldigKomponent(ChoiceBox test) throws UgyldigKomponent{
