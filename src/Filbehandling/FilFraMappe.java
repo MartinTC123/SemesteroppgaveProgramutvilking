@@ -9,7 +9,6 @@ public class FilFraMappe {
         File mappePath = new File("src/txtFiler");
         for (File fil : mappePath.listFiles()){
             filer.add(fil.getName());
-            System.out.println(fil.getName());
         }
         return filer;
     }

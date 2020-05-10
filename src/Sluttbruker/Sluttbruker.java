@@ -2,6 +2,8 @@ package Sluttbruker;
 
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
+import Exceptions.FilEksisterer;
+import Exceptions.UgyldigKomponent;
 import Filbehandling.FilFraMappe;
 import Filbehandling.FilLeserJobj;
 import Filbehandling.FilSkriverTxt;
@@ -88,29 +90,31 @@ public class Sluttbruker implements Initializable {
 
         @FXML
         public void lagreTilFil(ActionEvent event) {
-
                 try {
-                        int versjonsNummer = Integer.parseInt(inputLagre.getText());
-                        Path path = Paths.get("src/txtFiler/Datamaskin" + versjonsNummer + ".txt");
+                        Path path1 = Paths.get(inputLagre.getText()+".txt");
+                        Path path2 = Paths.get("src/txtFiler/" + path1);
+                        ArrayList<String> filer = FilFraMappe.Filer();
 
-                        FilSkriverTxt.lagre(dataListe, path );
-                        lblFilbehandling.setText("Fil ble lagret med følgende versjon: " + versjonsNummer);
-
+                        for (String fil: filer) {
+                                if (String.valueOf(path1).equals(fil)){
+                                        throw new FilEksisterer("Filnavnet eksisterer, prøv et annet navn");
+                                }
+                                else {
+                                        FilSkriverTxt.lagre(dataListe, path2);
+                                        lblFilbehandling.setText("Fil ble lagret med følgende navn: " + path1);
+                                }
+                        }
                 } catch (IOException e) {
-                        lblFilbehandling.setText("Noe gikk feil ved lagring til fil!");
+                        lblFilbehandling.setText("En feil skjedde ved lagring til fil, prøv på nytt.");
                 }
-                catch (NumberFormatException e){
-                        lblFilbehandling.setText("Skriv inn versjonsnummer som heltall");
+                catch (FilEksisterer e ){
+                        lblFilbehandling.setText(e.getMessage());
                 }
-
         }
 
         @FXML
         public void eksempelData(ActionEvent event) {
                // fyll inn mot slutten
-               ArrayList<String> filer = FilFraMappe.Filer();
-
-
         }
 
         @FXML
