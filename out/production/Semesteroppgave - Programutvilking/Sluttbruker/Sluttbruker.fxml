@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="byttScene" prefHeight="664.0" prefWidth="730.0" style="-fx-background-color: #3D4569;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sluttbruker.Sluttbruker">
+<AnchorPane fx:id="byttScene" prefHeight="664.0" prefWidth="730.0" style="-fx-background-color: #3D4569;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sluttbruker.Sluttbruker">
    <children>
       <Label layoutX="170.0" layoutY="69.0" prefHeight="112.0" prefWidth="518.0" text="Opprett en datamaskin" textAlignment="CENTER" textFill="WHITE">
          <font>
@@ -73,11 +73,11 @@
          <font>
             <Font name="Roboto Bold Condensed" size="13.0" />
          </font></Label>
-      <Button layoutX="27.0" layoutY="514.0" mnemonicParsing="false" onAction="#beregnTotPris" style="-fx-background-color: #3D4556;" text="Beregn totalpris" textFill="WHITE">
+      <Button fx:id="btnBeregn" layoutX="27.0" layoutY="514.0" mnemonicParsing="false" onAction="#beregnTotPris" style="-fx-background-color: #3D4556;" text="Beregn totalpris" textFill="WHITE">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" height="20.0" radius="9.5" width="20.0" />
          </effect></Button>
-      <Button layoutX="252.0" layoutY="576.0" mnemonicParsing="false" onAction="#lagreTilFil" style="-fx-background-color: #3D4556 #3D4556;" text="Lagre datamaskin" textFill="WHITE">
+      <Button fx:id="btnLagre" layoutX="252.0" layoutY="576.0" mnemonicParsing="false" onAction="#lagreTilFil" style="-fx-background-color: #3D4556 #3D4556;" text="Lagre datamaskin" textFill="WHITE">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" />
          </effect></Button>
@@ -85,12 +85,12 @@
          <font>
             <Font name="Roboto Bold Condensed" size="13.0" />
          </font></Label>
-      <Button layoutX="27.0" layoutY="469.0" mnemonicParsing="false" onAction="#eksempelData" style="-fx-background-color: #3D4556 #3D4556;" text="Eksempel på datamaskin" textFill="WHITE">
+      <Button fx:id="btnEksempel" layoutX="27.0" layoutY="469.0" mnemonicParsing="false" onAction="#eksempelData" style="-fx-background-color: #3D4556 #3D4556;" text="Eksempel på datamaskin" textFill="WHITE">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" />
          </effect>
       </Button>
-      <Button layoutX="296.0" layoutY="469.0" mnemonicParsing="false" onAction="#fjernData" style="-fx-background-color: #3D4556 #3D4556 #3D4556 #3D4556;" text="Fjern alt" textFill="WHITE">
+      <Button fx:id="btnFjern" layoutX="296.0" layoutY="469.0" mnemonicParsing="false" onAction="#fjernData" style="-fx-background-color: #3D4556 #3D4556 #3D4556 #3D4556;" text="Fjern alt" textFill="WHITE">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" />
          </effect>

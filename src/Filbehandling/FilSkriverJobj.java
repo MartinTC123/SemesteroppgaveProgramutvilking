@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilSkriverJobj implements FilSkriver {
+public class FilSkriverJobj {
     public static void lagre(List<?> liste, Path path) throws IOException {
         try (OutputStream os = Files.newOutputStream(path);
              ObjectOutputStream out = new ObjectOutputStream(os)){
