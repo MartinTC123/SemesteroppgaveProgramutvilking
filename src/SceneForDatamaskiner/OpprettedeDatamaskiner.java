@@ -3,6 +3,7 @@ package SceneForDatamaskiner;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
 import Filbehandling.FilFraMappe;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,8 +42,16 @@ public class OpprettedeDatamaskiner implements Initializable {
     @FXML
     private ChoiceBox<String> choiceBox;
 
+
+
+
+
+
+
     @FXML
     private Label lblUt;
+
+
 
     KomponentCollection kColl = new KomponentCollection();
 
@@ -63,6 +72,8 @@ public class OpprettedeDatamaskiner implements Initializable {
         prisC.setCellFactory(TextFieldTableCell.<Komponent,Integer>forTableColumn(new IntegerStringConverter()));
     }
 
+
+
     @FXML
     void gåTilbake(ActionEvent event) throws IOException {
         Parent scene= FXMLLoader.load(getClass().getResource("../Sluttbruker/Sluttbruker.fxml"));
@@ -71,4 +82,6 @@ public class OpprettedeDatamaskiner implements Initializable {
         vindu.setScene(scene1);
         vindu.show();
     }
+
+
 }
