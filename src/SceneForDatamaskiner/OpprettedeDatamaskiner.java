@@ -2,6 +2,8 @@ package SceneForDatamaskiner;
 
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
+import Filbehandling.FilFraMappe;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,8 @@ import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class OpprettedeDatamaskiner implements Initializable {
@@ -42,9 +46,17 @@ public class OpprettedeDatamaskiner implements Initializable {
 
     KomponentCollection kColl = new KomponentCollection();
 
+    ArrayList<String> filer= FilFraMappe.Filer();
+
+    public List<String> getList(){
+        return filer;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         kColl.kobleTilTableView(tabell);
+
+        choiceBox.setItems(FXCollections.observableArrayList(getList()));
 
         navnC.setCellFactory(TextFieldTableCell.forTableColumn());
         komponentC.setCellFactory(TextFieldTableCell.forTableColumn());
