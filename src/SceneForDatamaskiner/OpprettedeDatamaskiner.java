@@ -68,6 +68,12 @@ public class OpprettedeDatamaskiner implements Initializable {
                 ArrayList<Komponent> kListe = FilLeserTxt.les(path);
                 for (Komponent k : kListe){
                     kColl.leggTilElement(k);
+                    TableColumn<Komponent, Integer> rad= prisC;
+                    List<Integer> data= new ArrayList<>();
+                    for (Komponent k2 : tabell.getItems()){
+                        data.add(rad.getCellObservableValue(k2).getValue());
+                        lblUt.setText("Totalpris: " + String.valueOf(data.stream().mapToInt(i -> i).sum()) + "kr");
+                    }
                 }
             } catch (IOException e) {
                 lblUt.setText(e.getMessage());
