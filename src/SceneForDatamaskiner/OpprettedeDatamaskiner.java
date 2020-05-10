@@ -3,6 +3,8 @@ package SceneForDatamaskiner;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
 import Filbehandling.FilFraMappe;
+import Filbehandling.FilLeserTxt;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -21,6 +23,8 @@ import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -42,16 +46,8 @@ public class OpprettedeDatamaskiner implements Initializable {
     @FXML
     private ChoiceBox<String> choiceBox;
 
-
-
-
-
-
-
     @FXML
     private Label lblUt;
-
-
 
     KomponentCollection kColl = new KomponentCollection();
 
@@ -66,6 +62,21 @@ public class OpprettedeDatamaskiner implements Initializable {
         kColl.kobleTilTableView(tabell);
 
         choiceBox.setItems(FXCollections.observableArrayList(getList()));
+        choiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                Path path = Paths.get("src/txtFiler/"+ filer.get(newValue.intValue()));
+                tabell.getItems().clear();
+                try {
+                    ArrayList<Komponent> kListe = FilLeserTxt.les(path);
+                    for (Komponent k : kListe){
+                        kColl.leggTilElement(k);
+                    }
+                } catch (IOException e) {
+                    lblUt.setText(e.getMessage());
+                }
+            }
+        });
 
         navnC.setCellFactory(TextFieldTableCell.forTableColumn());
         komponentC.setCellFactory(TextFieldTableCell.forTableColumn());
