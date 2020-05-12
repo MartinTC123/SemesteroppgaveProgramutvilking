@@ -29,6 +29,10 @@ import java.util.ResourceBundle;
 
 public class OpprettedeDatamaskiner implements Initializable {
 
+    KomponentCollection kColl = new KomponentCollection();
+
+    ArrayList<String> filer= FilFraMappe.Filer();
+
     @FXML
     private TableView<Komponent> tabell;
 
@@ -46,10 +50,6 @@ public class OpprettedeDatamaskiner implements Initializable {
 
     @FXML
     private Label lblUt;
-
-    KomponentCollection kColl = new KomponentCollection();
-
-    ArrayList<String> filer= FilFraMappe.Filer();
 
     public List<String> getList(){
         return filer;
