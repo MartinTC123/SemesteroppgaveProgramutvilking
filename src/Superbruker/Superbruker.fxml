@@ -22,7 +22,7 @@
       </Label>
       <TableView fx:id="tabell3" layoutX="54.0" layoutY="209.0" prefHeight="200.0" prefWidth="350.0">
          <columns>
-            <TableColumn fx:id="navnC3" onEditCommit="#txtNavnEdited" prefWidth="100.0" text="Navn">
+            <TableColumn fx:id="navnC3" onEditCommit="#txtNavnEdited" prefWidth="170.0" text="Navn">
                <cellValueFactory>
                   <PropertyValueFactory property="navn" />
                </cellValueFactory>
@@ -30,7 +30,7 @@
                   <TextFieldTableCell fx:factory="forTableColumn" />
                </cellFactory>
             </TableColumn>
-            <TableColumn fx:id="komponentC3" onEditCommit="#txtKomponentEdited" prefWidth="150.0" text="Komponent">
+            <TableColumn fx:id="komponentC3" onEditCommit="#txtKomponentEdited" prefWidth="100.0" text="Komponent">
                <cellValueFactory>
                   <PropertyValueFactory property="komponent" />
                </cellValueFactory>
@@ -38,7 +38,7 @@
                   <TextFieldTableCell fx:factory="forTableColumn" />
                </cellFactory>
             </TableColumn>
-            <TableColumn fx:id="prisC3" onEditCommit="#intPrisEdited" prefWidth="100.0" text="Pris">
+            <TableColumn fx:id="prisC3" onEditCommit="#intPrisEdited" prefWidth="80.0" text="Pris">
                <cellValueFactory>
                   <PropertyValueFactory property="pris" />
                </cellValueFactory>
