@@ -6,6 +6,7 @@ import javafx.concurrent.Task;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.io.StreamCorruptedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class FilLeserJobj extends Task<ArrayList> {
                 k = (Komponent) innStream.readObject();
                 kListe.add(k);
             }
+        } catch (StreamCorruptedException e){
+            throw new StreamCorruptedException("Ugyldig data i fil");
         } catch (IOException | ClassNotFoundException e) {
             e.getMessage();
         }

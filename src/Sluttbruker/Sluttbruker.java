@@ -197,7 +197,7 @@ public class Sluttbruker implements Initializable {
 
         private void traadFeilet(WorkerStateEvent event){
                 Throwable e = event.getSource().getException();
-                lblTotalpris.setText("Klarte ikke laste inn data, avviket sier " + e.getMessage());
+                lblTotalpris.setText(e.getMessage());
                 tabell1.setDisable(false);
                 tabell2.setDisable(false);
                 inputLagre.setDisable(false);

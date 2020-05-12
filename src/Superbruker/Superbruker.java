@@ -34,7 +34,6 @@ public class Superbruker implements Initializable {
     Path path = Paths.get("komponenter.jobj");
     KomponentCollection kColl3= new KomponentCollection();
 
-
     @FXML
     private TableView tabell3;
 
@@ -129,8 +128,8 @@ public class Superbruker implements Initializable {
         tabell3.setEditable(true);
 
         tråd = new FilLeserJobj(path);
-        tråd.setOnSucceeded(this::trådFerdig);
-        tråd.setOnFailed(this::trådFeilet);
+        tråd.setOnSucceeded(this::traadFerdig);
+        tråd.setOnFailed(this::traadFeilet);
         Thread th = new Thread(tråd);
         th.setDaemon(true);
         tabell3.setDisable(true);
@@ -146,9 +145,9 @@ public class Superbruker implements Initializable {
         th.start();
     }
 
-    private void trådFeilet(WorkerStateEvent event){
+    private void traadFeilet(WorkerStateEvent event){
         Throwable e = event.getSource().getException();
-        lblNyttKomponent.setText("Klarte ikke laste inn data, avviket sier " + e.getMessage());
+        lblNyttKomponent.setText(e.getMessage());
         tabell3.setDisable(false);
         txtFiltrer.setDisable(false);
         innNavn.setDisable(false);
@@ -159,7 +158,7 @@ public class Superbruker implements Initializable {
         btnLeggTil.setDisable(false);
 
     }
-    private void trådFerdig(WorkerStateEvent e){
+    private void traadFerdig(WorkerStateEvent e){
         ArrayList<Komponent> kListe = tråd.getValue();
         for (Komponent k : kListe){
             kColl3.leggTilElement(k);
