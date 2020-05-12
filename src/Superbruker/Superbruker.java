@@ -4,9 +4,7 @@ import Avvikshåndtering.Avvik;
 import Avvikshåndtering.TableViewAvvik;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
-
 import Filbehandling.FilLeserJobj;
-
 import Filbehandling.FilSkriverJobj;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -244,7 +242,6 @@ public class Superbruker implements Initializable {
     public void intPrisEdited(TableColumn.CellEditEvent<Komponent, Integer> event){
         if (nyVerdi.prisTVHaandtering(event.getNewValue())){
             event.getRowValue().setPris(event.getNewValue());
-
         }else {
             advarsel.setTitle("Advarsel!");
             String msg= Avvik.avviksMelding;

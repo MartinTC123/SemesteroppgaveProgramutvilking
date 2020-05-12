@@ -1,7 +1,6 @@
 package Filbehandling;
 
 import Datamaskin.Komponent;
-
 import java.io.IOException;
 
 public class ParseKomponent {

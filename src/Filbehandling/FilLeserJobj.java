@@ -2,7 +2,6 @@ package Filbehandling;
 
 import Datamaskin.Komponent;
 import javafx.concurrent.Task;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;

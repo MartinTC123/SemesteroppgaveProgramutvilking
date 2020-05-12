@@ -85,8 +85,6 @@ public class OpprettedeDatamaskiner implements Initializable {
         prisC.setCellFactory(TextFieldTableCell.<Komponent,Integer>forTableColumn(new IntegerStringConverter()));
     }
 
-
-
     @FXML
     void gåTilbake(ActionEvent event) throws IOException {
         Parent scene= FXMLLoader.load(getClass().getResource("../Sluttbruker/Sluttbruker.fxml"));
@@ -95,6 +93,4 @@ public class OpprettedeDatamaskiner implements Initializable {
         vindu.setScene(scene1);
         vindu.show();
     }
-
-
 }

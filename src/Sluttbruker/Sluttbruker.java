@@ -20,7 +20,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
-
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
