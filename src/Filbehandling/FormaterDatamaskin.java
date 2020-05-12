@@ -4,13 +4,13 @@ import Datamaskin.Komponent;
 import java.util.List;
 
 public class FormaterDatamaskin {
-    public static String DELIMITER= ",";
+    public static String DELIMITER= ";";
 
     public static String formaterDatamaskin(Komponent k){
         return k.getNavn() + DELIMITER + k.getKomponent() + DELIMITER + k.getPris();
     }
 
-    public static String formaterDatamaskiner(List<Komponent> komponents){
+    public static String formaterDatamaskiner(List<Komponent> komponents) throws NullPointerException{
         StringBuffer str= new StringBuffer();
         for (Komponent k : komponents){
             str.append(formaterDatamaskin(k) + "\n");

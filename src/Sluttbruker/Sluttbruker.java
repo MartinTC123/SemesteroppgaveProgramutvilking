@@ -114,6 +114,9 @@ public class Sluttbruker implements Initializable {
                 catch (FilEksisterer | UgyldigNavn e ){
                         lblFilbehandling.setText(e.getMessage());
                 }
+                catch (NullPointerException e){
+                        lblFilbehandling.setText("En feil skjedde, trykk på Fjern alt og prøv på nytt");
+                }
         }
 
         @FXML
@@ -173,6 +176,8 @@ public class Sluttbruker implements Initializable {
                 komponentC2.setCellFactory(TextFieldTableCell.forTableColumn());
                 prisC2.setCellFactory(TextFieldTableCell.<Komponent,Integer>forTableColumn(new IntegerStringConverter()));
 
+
+
                 traad = new FilLeserJobj(path);
                 traad.setOnSucceeded(this::traadFerdig);
                 traad.setOnFailed(this::traadFeilet);
@@ -193,15 +198,28 @@ public class Sluttbruker implements Initializable {
                 kColl2.sorterTableView(tabell2, txtFiltrer);
                 tabell2.setOnMouseClicked(event -> {
                         Komponent valgtKomponent= tabell2.getSelectionModel().getSelectedItem();
-                        kColl.leggTilElement(valgtKomponent);
-                        dataListe.add(valgtKomponent);
-                        kColl2.fjernElement(valgtKomponent);
+                        try{
+                        if(!valgtKomponent.getKomponent().isEmpty()) {
+                                kColl.leggTilElement(valgtKomponent);
+                                dataListe.add(valgtKomponent);
+                                kColl2.fjernElement(valgtKomponent);
+                        }
+                        } catch (NullPointerException e) {
+                                e.getMessage();
+                        }
                 });
                 tabell1.setOnMouseClicked(event -> {
                         Komponent valgtKomponent= tabell1.getSelectionModel().getSelectedItem();
+                        try{
+                        if(!valgtKomponent.getKomponent().isEmpty()){
                         kColl.fjernElement(valgtKomponent);
                         dataListe.remove(valgtKomponent);
                         kColl2.leggTilElement(valgtKomponent);
+                        }
+                        }
+                        catch (NullPointerException e){
+                                e.getMessage();
+                        }
                 });
         }
 

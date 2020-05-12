@@ -177,7 +177,6 @@ public class Superbruker implements Initializable {
         btnFjern.setDisable(false);
         btnLagre.setDisable(false);
         btnLeggTil.setDisable(false);
-
     }
 
     private Komponent opprettKomponent(){
