@@ -4,6 +4,7 @@ import Avvikshåndtering.Avvik;
 import Avvikshåndtering.TableViewAvvik;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
+import Exceptions.UgyldigKomponent;
 import Filbehandling.FilLeserJobj;
 import Filbehandling.FilSkriverJobj;
 import javafx.collections.FXCollections;
@@ -93,9 +94,13 @@ public class Superbruker implements Initializable {
         Komponent nyttKomponent= null;
         try {
             nyttKomponent = opprettKomponent();
+
         }
         catch (NumberFormatException e){
             lblNyttKomponent.setText("Velg type komponent, skriv inn navn og gyldig pris!");
+        }
+        catch (UgyldigKomponent e){
+            lblNyttKomponent.setText(e.getMessage());
         }
         if (nyttKomponent != null){
             kColl3.leggTilElement(nyttKomponent);
@@ -196,6 +201,15 @@ public class Superbruker implements Initializable {
         }
 
         Komponent nyttKomponent= new Komponent(navn, komponent, pris);
+
+        for (Komponent k : kColl3.getListe()){
+            if (k.getKomponent().equals(nyttKomponent.getKomponent()) && k.getNavn().equals(nyttKomponent.getNavn()) ){
+                if (k.getPris() == nyttKomponent.getPris()){
+                    throw new UgyldigKomponent("Komponentet eksisterer allerede!");
+                }
+                throw new UgyldigKomponent("Komponentet eksisterer allerede med en annen pris!");
+            }
+        }
 
         if (!opprettKomponent){
             lblNyttKomponent.setText(Avvik.avviksMelding);
