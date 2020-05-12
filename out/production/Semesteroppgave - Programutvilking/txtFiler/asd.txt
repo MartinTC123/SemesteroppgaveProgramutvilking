@@ -1,0 +1,2 @@
+ASUS ROG Gladius;Mus;1390
+Kingston A400;Harddisk;520

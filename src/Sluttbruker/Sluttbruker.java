@@ -3,6 +3,7 @@ package Sluttbruker;
 import Datamaskin.Komponent;
 import Datamaskin.KomponentCollection;
 import Exceptions.FilEksisterer;
+import Exceptions.UgyldigKomponent;
 import Exceptions.UgyldigNavn;
 import Filbehandling.FilFraMappe;
 import Filbehandling.FilLeserJobj;
@@ -34,7 +35,7 @@ public class Sluttbruker implements Initializable {
 
         KomponentCollection kColl2= new KomponentCollection();
 
-        ArrayList<Komponent> dataListe= new ArrayList<>();
+
 
         Path path = Paths.get("komponenter.jobj");
 
@@ -90,10 +91,17 @@ public class Sluttbruker implements Initializable {
 
         @FXML
         public void lagreTilFil(ActionEvent event) {
+
+                ObservableList<Komponent> dataListe;
                 try {
                         Path path1 = Paths.get(inputLagre.getText()+".txt");
                         Path path2 = Paths.get("src/txtFiler/" + path1);
                         ArrayList<String> filer = FilFraMappe.Filer();
+                        dataListe = kColl.getListe();
+
+                        if (dataListe.isEmpty()){
+                                throw new UgyldigKomponent("Du kan ikke lagre en tom datamaskin");
+                        }
 
                        if (inputLagre.getText().isEmpty()){
                             throw new UgyldigNavn("Vennligst skriv inn et navn");
@@ -103,38 +111,76 @@ public class Sluttbruker implements Initializable {
                                 if (String.valueOf(path1).equals(fil)){
                                         throw new FilEksisterer("Filnavnet eksisterer, prøv et annet navn");
                                 }
-                                else {
-                                        FilSkriverTxt.lagre(dataListe, path2);
-                                        lblFilbehandling.setText("Fil ble lagret med følgende navn: " + path1);
-                                }
                         }
+                        FilSkriverTxt.lagre(dataListe, path2);
+                        lblFilbehandling.setText("Fil ble lagret med følgende navn: " + path1);
+
                 } catch (IOException e) {
                         lblFilbehandling.setText("En feil skjedde ved lagring til fil, prøv på nytt.");
                 }
-                catch (FilEksisterer | UgyldigNavn e ){
+                catch (FilEksisterer | UgyldigNavn|UgyldigKomponent e ){
                         lblFilbehandling.setText(e.getMessage());
                 }
                 catch (NullPointerException e){
                         lblFilbehandling.setText("En feil skjedde, trykk på Fjern alt og prøv på nytt");
                 }
+
         }
 
         @FXML
         public void eksempelData(ActionEvent event) {
-                Komponent eksD= new Komponent("Intel Core i5-9400F", "Prosessor", 1900);
-                kColl.leggTilElement(eksD);
-                Komponent eksD2= new Komponent("ASUS GeForce RTX 2060", "Skjermkort", 4800);
-                kColl.leggTilElement(eksD2);
-                Komponent eksD3= new Komponent("HyperX Predator DDR4", "Minne", 1250);
-                kColl.leggTilElement(eksD3);
-                Komponent eksD4= new Komponent("Corsair Force MP510","Harddisk", 1300);
-                kColl.leggTilElement(eksD4);
-                Komponent eksD5= new Komponent("Razer Huntsman", "Tastatur", 2000);
-                kColl.leggTilElement(eksD5);
-                Komponent eksD6= new Komponent("Razer Naga", "Mus", 800);
-                kColl.leggTilElement(eksD6);
-                Komponent eksD7= new Komponent("ASUS 34 ROG Swift", "Skjerm", 13400);
-                kColl.leggTilElement(eksD7);
+               for (Komponent k : tabell1.getItems()){
+                       kColl2.leggTilElement(k);
+               }
+               tabell1.getItems().clear();
+               boolean prosessor = true;
+               boolean skjermkort = true;
+               boolean minne = true;
+               boolean harddisk = true;
+               boolean tastatur = true;
+               boolean mus= true;
+               boolean skjerm=true;
+               ObservableList<Komponent> kListe = tabell2.getItems();
+
+               for (Komponent k : kListe){
+                       if(prosessor && k.getKomponent().equals("Prosessor")){
+                               kColl.leggTilElement(k);
+                               kColl2.fjernElement(k);
+                               prosessor=false;
+                       }
+                       if(skjermkort && k.getKomponent().equals("Skjermkort")){
+                               kColl.leggTilElement(k);
+                               kColl2.fjernElement(k);
+                               skjermkort=false;
+                       }
+                       if(minne && k.getKomponent().equals("Minne")){
+                               kColl.leggTilElement(k);
+                               kColl2.fjernElement(k);
+                               minne=false;
+                       }
+                       if(harddisk && k.getKomponent().equals("Harddisk")){
+                               kColl.leggTilElement(k);
+                               kColl2.fjernElement(k);
+                               harddisk=false;
+                       }
+                       if(tastatur && k.getKomponent().equals("Tastatur")){
+                               kColl.leggTilElement(k);
+                               kColl2.fjernElement(k);
+                               tastatur=false;
+                       }
+                       if(mus && k.getKomponent().equals("Mus")){
+                               kColl.leggTilElement(k);
+                               kColl2.fjernElement(k);
+                               mus=false;
+                       }
+                       if(skjerm && k.getKomponent().equals("Skjerm")){
+                               kColl.leggTilElement(k);
+                               kColl2.fjernElement(k);
+                               skjerm=false;
+                       }
+
+               }
+
         }
 
         @FXML
@@ -201,7 +247,6 @@ public class Sluttbruker implements Initializable {
                         try{
                         if(!valgtKomponent.getKomponent().isEmpty()) {
                                 kColl.leggTilElement(valgtKomponent);
-                                dataListe.add(valgtKomponent);
                                 kColl2.fjernElement(valgtKomponent);
                         }
                         } catch (NullPointerException e) {
@@ -213,7 +258,6 @@ public class Sluttbruker implements Initializable {
                         try{
                         if(!valgtKomponent.getKomponent().isEmpty()){
                         kColl.fjernElement(valgtKomponent);
-                        dataListe.remove(valgtKomponent);
                         kColl2.leggTilElement(valgtKomponent);
                         }
                         }

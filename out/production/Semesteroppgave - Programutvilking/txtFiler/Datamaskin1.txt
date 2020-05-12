@@ -1,0 +1,7 @@
+Kingston A400;Harddisk;520
+Crucial DDR4 ;Minne;1900
+Logitech Proteus Core G502;Mus;600
+Intel Core i9-9920X;Prosessor;7600
+ASUS 24 Nitro;Skjerm;3000
+ASUS Radeon RX 5600;Skjermkort;4200
+HyperX Alloy Core;Tastatur;700
