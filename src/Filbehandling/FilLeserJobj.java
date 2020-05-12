@@ -21,6 +21,7 @@ public class FilLeserJobj extends Task<ArrayList> {
     protected ArrayList<Komponent> call() throws Exception {
         ArrayList<Komponent> kListe = new ArrayList<>();
         Komponent k;
+
         try (InputStream fil =  Files.newInputStream(path);
              ObjectInputStream innStream = new ObjectInputStream(fil);) {
             Thread.sleep(3000);
