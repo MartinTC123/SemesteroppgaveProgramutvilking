@@ -118,7 +118,20 @@ public class Sluttbruker implements Initializable {
 
         @FXML
         public void eksempelData(ActionEvent event) {
-               // fyll inn mot slutten
+                Komponent eksD= new Komponent("Intel Core i5-9400F", "Prosessor", 1900);
+                kColl.leggTilElement(eksD);
+                Komponent eksD2= new Komponent("ASUS GeForce RTX 2060", "Skjermkort", 4800);
+                kColl.leggTilElement(eksD2);
+                Komponent eksD3= new Komponent("HyperX Predator DDR4", "Minne", 1250);
+                kColl.leggTilElement(eksD3);
+                Komponent eksD4= new Komponent("Corsair Force MP510","Harddisk", 1300);
+                kColl.leggTilElement(eksD4);
+                Komponent eksD5= new Komponent("Razer Huntsman", "Tastatur", 2000);
+                kColl.leggTilElement(eksD5);
+                Komponent eksD6= new Komponent("Razer Naga", "Mus", 800);
+                kColl.leggTilElement(eksD6);
+                Komponent eksD7= new Komponent("ASUS 34 ROG Swift", "Skjerm", 13400);
+                kColl.leggTilElement(eksD7);
         }
 
         @FXML
