@@ -2,7 +2,6 @@ package Datamaskin;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -62,7 +61,6 @@ public class Komponent implements Serializable {
         this.navn= new SimpleStringProperty(navn);
         this.komponent = new SimpleStringProperty(komponent);
         this.pris = new SimpleIntegerProperty(pris);
-
     }
 }
 

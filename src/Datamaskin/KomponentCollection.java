@@ -53,6 +53,5 @@ public class KomponentCollection {
         SortedList<Komponent> sortertListe= new SortedList<>(filtrertListe);
         sortertListe.comparatorProperty().bind(t.comparatorProperty());
         t.setItems(sortertListe);
-
     }
 }

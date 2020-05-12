@@ -1,7 +1,6 @@
 package Filbehandling;
 
 import Datamaskin.Komponent;
-
 import java.util.List;
 
 public class FormaterDatamaskin {
