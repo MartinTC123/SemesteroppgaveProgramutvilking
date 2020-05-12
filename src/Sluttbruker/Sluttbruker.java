@@ -129,58 +129,63 @@ public class Sluttbruker implements Initializable {
 
         @FXML
         public void eksempelData(ActionEvent event) {
+                ObservableList<Komponent> kListe = tabell2.getItems();
+
                for (Komponent k : tabell1.getItems()){
                        kColl2.leggTilElement(k);
                }
+
                tabell1.getItems().clear();
-               boolean prosessor = true;
-               boolean skjermkort = true;
-               boolean minne = true;
-               boolean harddisk = true;
-               boolean tastatur = true;
-               boolean mus= true;
-               boolean skjerm=true;
-               ObservableList<Komponent> kListe = tabell2.getItems();
+
 
                for (Komponent k : kListe){
-                       if(prosessor && k.getKomponent().equals("Prosessor")){
-                               kColl.leggTilElement(k);
-                               kColl2.fjernElement(k);
-                               prosessor=false;
-                       }
-                       if(skjermkort && k.getKomponent().equals("Skjermkort")){
-                               kColl.leggTilElement(k);
-                               kColl2.fjernElement(k);
-                               skjermkort=false;
-                       }
-                       if(minne && k.getKomponent().equals("Minne")){
-                               kColl.leggTilElement(k);
-                               kColl2.fjernElement(k);
-                               minne=false;
-                       }
-                       if(harddisk && k.getKomponent().equals("Harddisk")){
-                               kColl.leggTilElement(k);
-                               kColl2.fjernElement(k);
-                               harddisk=false;
-                       }
-                       if(tastatur && k.getKomponent().equals("Tastatur")){
-                               kColl.leggTilElement(k);
-                               kColl2.fjernElement(k);
-                               tastatur=false;
-                       }
-                       if(mus && k.getKomponent().equals("Mus")){
-                               kColl.leggTilElement(k);
-                               kColl2.fjernElement(k);
-                               mus=false;
-                       }
-                       if(skjerm && k.getKomponent().equals("Skjerm")){
-                               kColl.leggTilElement(k);
-                               kColl2.fjernElement(k);
-                               skjerm=false;
-                       }
-
+                       sjekkOm(k);
                }
+        }
 
+        public void sjekkOm(Komponent k){
+                boolean prosessor = true;
+                boolean skjermkort = true;
+                boolean minne = true;
+                boolean harddisk = true;
+                boolean tastatur = true;
+                boolean mus= true;
+                boolean skjerm=true;
+                if(prosessor && k.getKomponent().equals("Prosessor")){
+                        kColl.leggTilElement(k);
+                        kColl2.fjernElement(k);
+                        prosessor=false;
+                }
+                else if(skjermkort && k.getKomponent().equals("Skjermkort")){
+                        kColl.leggTilElement(k);
+                        kColl2.fjernElement(k);
+                        skjermkort=false;
+                }
+                else if(minne && k.getKomponent().equals("Minne")){
+                        kColl.leggTilElement(k);
+                        kColl2.fjernElement(k);
+                        minne=false;
+                }
+                else if(harddisk && k.getKomponent().equals("Harddisk")){
+                        kColl.leggTilElement(k);
+                        kColl2.fjernElement(k);
+                        harddisk=false;
+                }
+                else if(tastatur && k.getKomponent().equals("Tastatur")){
+                        kColl.leggTilElement(k);
+                        kColl2.fjernElement(k);
+                        tastatur=false;
+                }
+                else if(mus && k.getKomponent().equals("Mus")){
+                        kColl.leggTilElement(k);
+                        kColl2.fjernElement(k);
+                        mus=false;
+                }
+                else if(skjerm && k.getKomponent().equals("Skjerm")){
+                        kColl.leggTilElement(k);
+                        kColl2.fjernElement(k);
+                        skjerm=false;
+                }
         }
 
         @FXML
