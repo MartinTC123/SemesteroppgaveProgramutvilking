@@ -30,7 +30,16 @@ import java.util.ResourceBundle;
 public class Superbruker implements Initializable {
 
     Path path = Paths.get("komponenter.jobj");
+
     KomponentCollection kColl3= new KomponentCollection();
+
+    ObservableList<String> tilgjengeligeValg= FXCollections.observableArrayList("Prosessor", "Skjermkort", "Minne", "Harddisk", "Tastatur", "Mus", "Skjerm");
+
+    private FilLeserJobj traad;
+
+    private TableViewAvvik nyVerdi= new TableViewAvvik();
+
+    Alert advarsel= new Alert(Alert.AlertType.WARNING);
 
     @FXML
     private TableView tabell3;
@@ -109,9 +118,6 @@ public class Superbruker implements Initializable {
         kColl3.fjernElement(valgtKomponent);
     }
 
-    ObservableList<String> tilgjengeligeValg= FXCollections.observableArrayList("Prosessor", "Skjermkort", "Minne", "Harddisk", "Tastatur", "Mus", "Skjerm");
-    private FilLeserJobj tråd;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         kColl3.kobleTilTableView(tabell3);
@@ -125,10 +131,10 @@ public class Superbruker implements Initializable {
 
         tabell3.setEditable(true);
 
-        tråd = new FilLeserJobj(path);
-        tråd.setOnSucceeded(this::traadFerdig);
-        tråd.setOnFailed(this::traadFeilet);
-        Thread th = new Thread(tråd);
+        traad = new FilLeserJobj(path);
+        traad.setOnSucceeded(this::traadFerdig);
+        traad.setOnFailed(this::traadFeilet);
+        Thread th = new Thread(traad);
         th.setDaemon(true);
         tabell3.setDisable(true);
         txtFiltrer.setDisable(true);
@@ -157,7 +163,7 @@ public class Superbruker implements Initializable {
 
     }
     private void traadFerdig(WorkerStateEvent e){
-        ArrayList<Komponent> kListe = tråd.getValue();
+        ArrayList<Komponent> kListe = traad.getValue();
         for (Komponent k : kListe){
             kColl3.leggTilElement(k);
         }
@@ -207,10 +213,6 @@ public class Superbruker implements Initializable {
         innPris.setText("");
         choiceBox.getSelectionModel().clearSelection();
     }
-
-    private TableViewAvvik nyVerdi= new TableViewAvvik();
-
-    Alert advarsel= new Alert(Alert.AlertType.WARNING);
 
     @FXML
     public void txtNavnEdited(TableColumn.CellEditEvent<Komponent, String> event){

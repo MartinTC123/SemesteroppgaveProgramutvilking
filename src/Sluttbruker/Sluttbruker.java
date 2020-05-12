@@ -38,6 +38,8 @@ public class Sluttbruker implements Initializable {
 
         Path path = Paths.get("komponenter.jobj");
 
+        private FilLeserJobj traad;
+
         @FXML
         private TextField inputLagre;
 
@@ -85,8 +87,6 @@ public class Sluttbruker implements Initializable {
 
         @FXML
         private Button btnFjern;
-
-
 
         @FXML
         public void lagreTilFil(ActionEvent event) {
@@ -148,8 +148,6 @@ public class Sluttbruker implements Initializable {
                 vindu.show();
         }
 
-        private FilLeserJobj tråd;
-
         @Override
         public void initialize(URL location, ResourceBundle resources) {
                 kColl.kobleTilTableView(tabell1);
@@ -162,10 +160,10 @@ public class Sluttbruker implements Initializable {
                 komponentC2.setCellFactory(TextFieldTableCell.forTableColumn());
                 prisC2.setCellFactory(TextFieldTableCell.<Komponent,Integer>forTableColumn(new IntegerStringConverter()));
 
-                tråd = new FilLeserJobj(path);
-                tråd.setOnSucceeded(this::traadFerdig);
-                tråd.setOnFailed(this::traadFeilet);
-                Thread th = new Thread(tråd);
+                traad = new FilLeserJobj(path);
+                traad.setOnSucceeded(this::traadFerdig);
+                traad.setOnFailed(this::traadFeilet);
+                Thread th = new Thread(traad);
                 th.setDaemon(true);
                 tabell1.setDisable(true);
                 tabell2.setDisable(true);
@@ -208,7 +206,7 @@ public class Sluttbruker implements Initializable {
         }
 
         private void traadFerdig(WorkerStateEvent e){
-                ArrayList<Komponent> kListe = tråd.getValue();
+                ArrayList<Komponent> kListe = traad.getValue();
                 for (Komponent k : kListe){
                         kColl2.leggTilElement(k);
                 }
