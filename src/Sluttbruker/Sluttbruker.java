@@ -211,6 +211,7 @@ public class Sluttbruker implements Initializable {
                         if(!valgtKomponent.getKomponent().isEmpty()) {
                                 kColl.leggTilElement(valgtKomponent);
                                 kColl2.fjernElement(valgtKomponent);
+                                lblTotalpris.setText(null);
                         }
                         } catch (NullPointerException e) {
                                 e.getMessage();
@@ -222,6 +223,7 @@ public class Sluttbruker implements Initializable {
                         if(!valgtKomponent.getKomponent().isEmpty()){
                         kColl.fjernElement(valgtKomponent);
                         kColl2.leggTilElement(valgtKomponent);
+                        lblTotalpris.setText(null);
                         }
                         }
                         catch (NullPointerException e){
