@@ -86,7 +86,6 @@ public class Sluttbruker implements Initializable {
 
         @FXML
         public void lagreTilFil(ActionEvent event) {
-
                 boolean prosessor = true;
                 boolean skjermkort = true;
                 boolean minne = true;
@@ -123,7 +122,7 @@ public class Sluttbruker implements Initializable {
                          }
                        }
                        if (prosessor||skjermkort||minne||harddisk){
-                               throw new UgyldigKomponent("Du må ha prosessor, skjermkort, minne og harddisk i en datamaskin");
+                               throw new UgyldigKomponent("Du må ha prosessor, skjermkort, minne og harddisk \ni en datamaskin");
                        }
 
                         for (String fil: filer) {
