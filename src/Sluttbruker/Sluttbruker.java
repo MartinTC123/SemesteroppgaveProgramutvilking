@@ -35,8 +35,6 @@ public class Sluttbruker implements Initializable {
 
         KomponentCollection kColl2= new KomponentCollection();
 
-
-
         Path path = Paths.get("komponenter.jobj");
 
         private FilLeserJobj traad;
@@ -84,9 +82,6 @@ public class Sluttbruker implements Initializable {
         private Button btnLagre;
 
         @FXML
-        private Button btnEksempel;
-
-        @FXML
         private Button btnFjern;
 
         @FXML
@@ -128,73 +123,13 @@ public class Sluttbruker implements Initializable {
         }
 
         @FXML
-        public void eksempelData(ActionEvent event) {
-                ObservableList<Komponent> kListe = tabell2.getItems();
-
-               for (Komponent k : tabell1.getItems()){
-                       kColl2.leggTilElement(k);
-               }
-
-               tabell1.getItems().clear();
-
-
-               for (Komponent k : kListe){
-                       sjekkOm(k);
-               }
-        }
-
-        public void sjekkOm(Komponent k){
-                boolean prosessor = true;
-                boolean skjermkort = true;
-                boolean minne = true;
-                boolean harddisk = true;
-                boolean tastatur = true;
-                boolean mus= true;
-                boolean skjerm=true;
-                if(prosessor && k.getKomponent().equals("Prosessor")){
-                        kColl.leggTilElement(k);
-                        kColl2.fjernElement(k);
-                        prosessor=false;
-                }
-                else if(skjermkort && k.getKomponent().equals("Skjermkort")){
-                        kColl.leggTilElement(k);
-                        kColl2.fjernElement(k);
-                        skjermkort=false;
-                }
-                else if(minne && k.getKomponent().equals("Minne")){
-                        kColl.leggTilElement(k);
-                        kColl2.fjernElement(k);
-                        minne=false;
-                }
-                else if(harddisk && k.getKomponent().equals("Harddisk")){
-                        kColl.leggTilElement(k);
-                        kColl2.fjernElement(k);
-                        harddisk=false;
-                }
-                else if(tastatur && k.getKomponent().equals("Tastatur")){
-                        kColl.leggTilElement(k);
-                        kColl2.fjernElement(k);
-                        tastatur=false;
-                }
-                else if(mus && k.getKomponent().equals("Mus")){
-                        kColl.leggTilElement(k);
-                        kColl2.fjernElement(k);
-                        mus=false;
-                }
-                else if(skjerm && k.getKomponent().equals("Skjerm")){
-                        kColl.leggTilElement(k);
-                        kColl2.fjernElement(k);
-                        skjerm=false;
-                }
-        }
-
-        @FXML
         public void fjernData(ActionEvent event) {
                 ObservableList<Komponent> kListe = tabell1.getItems();
                 for (Komponent k : kListe){
                         kColl2.leggTilElement(k);
                 }
                 tabell1.getItems().clear();
+                lblTotalpris.setText(null);
         }
 
         @FXML
@@ -227,8 +162,6 @@ public class Sluttbruker implements Initializable {
                 komponentC2.setCellFactory(TextFieldTableCell.forTableColumn());
                 prisC2.setCellFactory(TextFieldTableCell.<Komponent,Integer>forTableColumn(new IntegerStringConverter()));
 
-
-
                 traad = new FilLeserJobj(path);
                 traad.setOnSucceeded(this::traadFerdig);
                 traad.setOnFailed(this::traadFeilet);
@@ -239,7 +172,6 @@ public class Sluttbruker implements Initializable {
                 inputLagre.setDisable(true);
                 txtFiltrer.setDisable(true);
                 btnBeregn.setDisable(true);
-                btnEksempel.setDisable(true);
                 btnFjern.setDisable(true);
                 btnLagre.setDisable(true);
                 lblTotalpris.setStyle("-fx-text-fill:#ff4d05");
@@ -280,7 +212,6 @@ public class Sluttbruker implements Initializable {
                 inputLagre.setDisable(false);
                 txtFiltrer.setDisable(false);
                 btnBeregn.setDisable(false);
-                btnEksempel.setDisable(false);
                 btnFjern.setDisable(false);
                 btnLagre.setDisable(false);
         }
@@ -297,7 +228,6 @@ public class Sluttbruker implements Initializable {
                 inputLagre.setDisable(false);
                 txtFiltrer.setDisable(false);
                 btnBeregn.setDisable(false);
-                btnEksempel.setDisable(false);
                 btnFjern.setDisable(false);
                 btnLagre.setDisable(false);
         }
