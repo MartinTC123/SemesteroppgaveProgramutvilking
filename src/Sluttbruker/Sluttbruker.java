@@ -87,6 +87,11 @@ public class Sluttbruker implements Initializable {
         @FXML
         public void lagreTilFil(ActionEvent event) {
 
+                boolean prosessor = true;
+                boolean skjermkort = true;
+                boolean minne = true;
+                boolean harddisk = true;
+
                 ObservableList<Komponent> dataListe;
                 try {
                         Path path1 = Paths.get(inputLagre.getText()+".txt");
@@ -101,6 +106,25 @@ public class Sluttbruker implements Initializable {
                        if (inputLagre.getText().isEmpty()){
                             throw new UgyldigNavn("Vennligst skriv inn et navn");
                         }
+
+                       for (Komponent k : dataListe){
+                         if (k.getKomponent().equals("Prosessor")){
+                                 prosessor=false;
+
+                         }
+                         if (k.getKomponent().equals("Skjermkort")){
+                                 skjermkort=false;
+                         }
+                         if (k.getKomponent().equals("Minne")){
+                                 minne = false;
+                         }
+                         if (k.getKomponent().equals("Harddisk")){
+                                 harddisk=false;
+                         }
+                       }
+                       if (prosessor||skjermkort||minne||harddisk){
+                               throw new UgyldigKomponent("Du må ha prosessor, skjermkort, minne og harddisk i en datamaskin");
+                       }
 
                         for (String fil: filer) {
                                 if (String.valueOf(path1).equals(fil)){
@@ -119,6 +143,7 @@ public class Sluttbruker implements Initializable {
                 catch (NullPointerException e){
                         lblFilbehandling.setText("En feil skjedde, trykk på Fjern alt og prøv på nytt");
                 }
+
 
         }
 
