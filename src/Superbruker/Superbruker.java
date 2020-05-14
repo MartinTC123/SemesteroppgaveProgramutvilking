@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
 
 public class Superbruker implements Initializable {
 
-    Path path = Paths.get("komponenter.jobj");
+    Path path = Paths.get("src/jobjFiler/komponenter.jobj");
 
     KomponentCollection kColl3= new KomponentCollection();
 
@@ -115,6 +115,7 @@ public class Superbruker implements Initializable {
         Stage vindu= (Stage) ((Node)event.getSource()).getScene().getWindow();
         vindu.setScene(scene1);
         vindu.show();
+        vindu.setTitle("Datamaskin");
     }
 
     @FXML

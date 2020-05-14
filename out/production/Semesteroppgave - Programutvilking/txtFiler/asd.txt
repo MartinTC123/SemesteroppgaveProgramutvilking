@@ -1,5 +1,0 @@
-ASUS Radeon RX 5600;Skjermkort;4200
-Intel Core i9-9920X;Prosessor;7600
-HyperX Fury DDR4;Minne;1000
-AMD Ryzen 7 3800X;Prosessor;4200
-WD Black SN750;Harddisk;2500

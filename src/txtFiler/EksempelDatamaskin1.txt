@@ -1,0 +1,4 @@
+Intel Core i9-9920X;Prosessor;7600
+ASUS Radeon RX 5600;Skjermkort;4200
+HyperX Fury DDR4;Minne;1000
+Kingston A400;Harddisk;520

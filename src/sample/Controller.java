@@ -18,6 +18,7 @@ public class Controller {
         Stage vindu= (Stage) ((Node)event.getSource()).getScene().getWindow();
         vindu.setScene(scene1);
         vindu.show();
+        vindu.setTitle("Opprett en datamaskin");
     }
 
     @FXML
@@ -27,6 +28,7 @@ public class Controller {
         Stage vindu= (Stage) ((Node)event.getSource()).getScene().getWindow();
         vindu.setScene(scene1);
         vindu.show();
+        vindu.setTitle("Logg inn");
     }
 }
 

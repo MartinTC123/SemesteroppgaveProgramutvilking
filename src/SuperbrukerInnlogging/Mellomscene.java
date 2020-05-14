@@ -25,7 +25,7 @@ public class Mellomscene {
     private Label lblUt;
 
     private String brukernavn= "Admin";
-    private String passord= "shaggy123";
+    private String passord= "Sensor123";
 
     @FXML
     void loggInn(ActionEvent event) throws IOException {
@@ -35,6 +35,7 @@ public class Mellomscene {
             Stage vindu= (Stage) ((Node)event.getSource()).getScene().getWindow();
             vindu.setScene(scene1);
             vindu.show();
+            vindu.setTitle("Administrer komponenter");
         }else {
             lblUt.setText("Feil brukernavn eller passord!");
         }
@@ -47,6 +48,7 @@ public class Mellomscene {
         Stage vindu= (Stage) ((Node)event.getSource()).getScene().getWindow();
         vindu.setScene(scene1);
         vindu.show();
+        vindu.setTitle("Datamaskin");
     }
 }
 

@@ -92,5 +92,6 @@ public class OpprettedeDatamaskiner implements Initializable {
         Stage vindu= (Stage) ((Node)event.getSource()).getScene().getWindow();
         vindu.setScene(scene1);
         vindu.show();
+        vindu.setTitle("Opprett en datamaskin");
     }
 }

@@ -35,7 +35,7 @@ public class Sluttbruker implements Initializable {
 
         KomponentCollection kColl2= new KomponentCollection();
 
-        Path path = Paths.get("komponenter.jobj");
+        Path path = Paths.get("src/jobjFiler/komponenter.jobj");
 
         private FilLeserJobj traad;
 
@@ -163,6 +163,7 @@ public class Sluttbruker implements Initializable {
                 Stage vindu= (Stage) ((Node)event.getSource()).getScene().getWindow();
                 vindu.setScene(scene1);
                 vindu.show();
+                vindu.setTitle("Datamaskin");
         }
 
         @FXML
@@ -172,6 +173,7 @@ public class Sluttbruker implements Initializable {
                 Stage vindu= (Stage) ((Node)event.getSource()).getScene().getWindow();
                 vindu.setScene(scene1);
                 vindu.show();
+                vindu.setTitle("Opprettede datamaskiner");
         }
 
         @Override
