@@ -1,0 +1,6 @@
+Kingston A400;Harddisk;520
+HyperX Fury DDR4;Minne;1000
+HyperX Alloy Core;Tastatur;700
+ASUS 24 Nitro;Skjerm;3000
+ASUS GeForce GTX1660;Skjermkort;3200
+AMD Ryzen 7 3800X;Prosessor;4200
